@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FivePD - Candidatura Streamer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0095ff;
+            --primary-dark: #0077cc;
+            --primary-light: #42a5f5;
+            --accent: #0095ff;
+            --dark: #1a1a2e;
+            --darker: #0f0f1a;
+            --light: #f6f6f6;
+            --success: #43B581;
+            --danger: #F04747;
+            --warning: #FAA61A;
+            --italian-green: #009246;
+            --italian-red: #ce2b37;
+            --italian-white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            background-image: linear-gradient(to bottom, var(--darker), var(--dark));
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1.5rem 0;
+            border-bottom: 3px solid var(--primary);
+            background-color: var(--darker);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--italian-green), var(--italian-white), var(--italian-red));
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .logo-container img {
+            max-width: 200px;
+            height: auto;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+            text-shadow: 0 0 10px rgba(0, 149, 255, 0.7);
+        }
+        
+        .subtitle {
+            color: #a4a4a4;
+            font-size: 1.1rem;
+        }
+        
+        .form-container {
+            background-color: var(--darker);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            border-top: 4px solid var(--primary);
+            position: relative;
+        }
+        
+        .form-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, var(--italian-green), var(--italian-white), var(--italian-red));
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-shadow: 0 0 5px rgba(0, 149, 255, 0.3);
+        }
+        
+        .section-title:first-of-type {
+            margin-top: 0;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        input[type="text"],
+        input[type="number"],
+        input[type="url"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 5px;
+            border: 1px solid #3e4246;
+            background-color: #1e1e2e;
+            color: var(--light);
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(0, 149, 255, 0.3);
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(to right, var(--primary-dark), var(--primary));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-submit::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, var(--italian-green), var(--italian-white), var(--italian-red));
+        }
+        
+        .row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .col {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .error-text {
+            color: var(--danger);
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+            display: none;
+        }
+        
+        .has-error input,
+        .has-error select,
+        .has-error textarea {
+            border-color: var(--danger);
+        }
+        
+        .has-error .error-text {
+            display: block;
+        }
+        
+        .alert {
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .alert-success {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .alert-error {
+            background-color: var(--danger);
+            color: white;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .italian-flag {
+            display: inline-block;
+            margin-left: 5px;
+        }
+        
+        .italian-flag span {
+            display: inline-block;
+            width: 8px;
+            height: 15px;
+        }
+        
+        .italian-flag .green {
+            background-color: var(--italian-green);
+        }
+        
+        .italian-flag .white {
+            background-color: var(--italian-white);
+        }
+        
+        .italian-flag .red {
+            background-color: var(--italian-red);
+        }
+        
+        .glow-effect {
+            position: relative;
+        }
+        
+        .glow-effect::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), transparent, var(--primary));
+            z-index: -1;
+            border-radius: 12px;
+            animation: glowing 3s linear infinite;
+            opacity: 0.5;
+        }
+        
+        @keyframes glowing {
+            0% {
+                background-position: 0 0;
+            }
+            50% {
+                background-position: 400% 0;
+            }
+            100% {
+                background-position: 0 0;
+            }
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #a4a4a4;
+            font-size: 0.9rem;
+            padding: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 600px) {
+            .row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 0.5rem;
+            }
+            
+            .form-container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <!-- Placeholder for logo - replace with actual logo URL -->
+            <div class="logo-container">
+                <img src="image/logo.png" alt="logo" id="logo-image">
+            </div>
+            <h1>FivePD Candidatura Streamer</h1>
+            <p class="subtitle">Compila il modulo per unirti al nostro team di streamer</p>
+        </header>
+        
+        <div id="alerts"></div>
+        
+        <form id="streamerForm" class="form-container glow-effect">
+            <!-- DATI PERSONALI -->
+            <h2 class="section-title"><i class="fas fa-user"></i> Dati Personali</h2>
+            
+            <div class="form-group">
+                <label for="nickname">Nome o Nickname *</label>
+                <input type="text" id="nickname" name="nickname" required maxlength="50">
+                <div class="error-text">Questo campo è obbligatorio</div>
+            </div>
+            
+            <div class="row">
+                <div class="col form-group">
+                    <label for="age">Età *</label>
+                    <input type="number" id="age" name="age" min="13" max="99" required>
+                    <div class="error-text">Inserisci un'età valida (13-99)</div>
+                </div>
+                
+                <div class="col form-group">
+                    <label for="discord">Discord *</label>
+                    <input type="text" id="discord" name="discord" placeholder="Nome#0000 o Username" required>
+                    <div class="error-text">Questo campo è obbligatorio</div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="nationality">Nazionalità / Lingua parlata *</label>
+                <div style="display: flex; align-items: center;">
+                    <input type="text" id="nationality" name="nationality" required style="flex: 1;">
+                    <div class="italian-flag" style="margin-left: 10px;">
+                        <span class="green"></span>
+                        <span class="white"></span>
+                        <span class="red"></span>
+                    </div>
+                </div>
+                <div class="error-text">Questo campo è obbligatorio</div>
+            </div>
+            
+            <!-- DATI STREAMING -->
+            <h2 class="section-title"><i class="fas fa-video"></i> Dati Streaming</h2>
+
+            <div class="form-group">
+                <label>Piattaforme di Streaming *</label>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin-top: 10px;">
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="platform-twitch" name="platforms" value="Twitch" class="platform-checkbox">
+                        <label for="platform-twitch">Twitch</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="platform-youtube" name="platforms" value="YouTube" class="platform-checkbox">
+                        <label for="platform-youtube">YouTube</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="platform-kick" name="platforms" value="Kick" class="platform-checkbox">
+                        <label for="platform-kick">Kick</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="platform-tiktok" name="platforms" value="TikTok" class="platform-checkbox">
+                        <label for="platform-tiktok">TikTok</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="platform-altro" name="platforms" value="Altro" class="platform-checkbox">
+                        <label for="platform-altro">Altro</label>
+                    </div>
+                </div>
+                <div class="error-text">Seleziona almeno una piattaforma</div>
+            </div>
+
+            <div id="channel-links-container">
+                <!-- I campi per i link ai canali verranno generati dinamicamente qui -->
+            </div>
+
+            <div class="row">
+                <div class="col form-group">
+                    <label for="frequency">Frequenza delle Live *</label>
+                    <select id="frequency" name="frequency" required>
+                        <option value="">Seleziona...</option>
+                        <option value="Giornaliera">Giornaliera</option>
+                        <option value="Settimanale">Settimanale</option>
+                        <option value="Mensile">Mensile</option>
+                        <option value="Altro">Altro</option>
+                    </select>
+                    <div class="error-text">Seleziona una frequenza</div>
+                </div>
+                
+                <div class="col form-group">
+                    <label for="streamTime">Orari Indicativi delle Live *</label>
+                    <input type="text" id="streamTime" name="streamTime" placeholder="Es: 18:00 - 21:00 (CET)" required>
+                    <div class="error-text">Questo campo è obbligatorio</div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="viewers">Numero medio di spettatori *</label>
+                <input type="number" id="viewers" name="viewers" min="0" required>
+                <div class="error-text">Inserisci un numero valido</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="experience">Esperienza pregressa nello streaming</label>
+                <textarea id="experience" name="experience" maxlength="500" placeholder="Racconta la tua esperienza (opzionale)"></textarea>
+            </div>
+            
+            <!-- ATTIVITÀ SUL SERVER -->
+            <h2 class="section-title"><i class="fas fa-server"></i> Attività sul Server</h2>
+            
+            <div class="form-group">
+                <label for="content">Che tipo di contenuti porteresti nel server? *</label>
+                <textarea id="content" name="content" required maxlength="500" placeholder="Descrivi i contenuti che intendi proporre"></textarea>
+                <div class="error-text">Questo campo è obbligatorio</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="otherServers">Hai già streammato su altri server simili? *</label>
+                <textarea id="otherServers" name="otherServers" required maxlength="500" placeholder="Condividi la tua esperienza con altri server"></textarea>
+                <div class="error-text">Questo campo è obbligatorio</div>
+            </div>
+            
+            <div class="form-group checkbox-container">
+                <input type="checkbox" id="rulesAccepted" name="rulesAccepted" required>
+                <label for="rulesAccepted">Ho letto e accettato il regolamento *</label>
+                <div class="error-text">Devi accettare il regolamento</div>
+            </div>
+            
+            <!-- ALTRE INFORMAZIONI -->
+            <h2 class="section-title"><i class="fas fa-info-circle"></i> Altre Informazioni</h2>
+            
+            <div class="form-group">
+                <label for="motivation">Motivazione per entrare come streamer nel server *</label>
+                <textarea id="motivation" name="motivation" required maxlength="500" placeholder="Spiega perché vuoi diventare uno streamer nel nostro server"></textarea>
+                <div class="error-text">Questo campo è obbligatorio</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="other">Altro da dichiarare</label>
+                <textarea id="other" name="other" maxlength="500" placeholder="Informazioni aggiuntive (opzionale)"></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-submit" id="submitBtn">
+                <i class="fas fa-paper-plane"></i> Invia Candidatura
+            </button>
+        </form>
+        
+        <footer>
+            &copy; 2025 - FivePD - Modulo di Candidatura Streamer
+        </footer>
+    </div>
+    
+    <script>
+        // Set the logo from the image shown in the message
+        document.addEventListener('DOMContentLoaded', function() {
+            // Replace the placeholder with the actual FivePD logo URL
+            document.getElementById('logo-image').src = "image/logo.png"; // Replace with actual logo URL
+            
+            const form = document.getElementById('streamerForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const alertsContainer = document.getElementById('alerts');
+            const platformCheckboxes = document.querySelectorAll('.platform-checkbox');
+            const channelLinksContainer = document.getElementById('channel-links-container');
+            
+            // Webhook URL - DA SOSTITUIRE CON IL VOSTRO WEBHOOK DISCORD
+            const webhookUrl = 'https://discord.com/api/webhooks/1367567084586008699/LMlqVXl-gl99xP9X58wkppGRO6bkzBblgK9Tl5aIij9S71sh4xse3AuRc5plKfH8WGk5'; // SOSTITUIRE CON IL VOSTRO URL WEBHOOK
+            
+            // Mostra un alert
+            function showAlert(message, type) {
+                const alert = document.createElement('div');
+                alert.className = `alert alert-${type}`;
+                alert.innerHTML = type === 'success' 
+                    ? `<i class="fas fa-check-circle"></i> ${message}`
+                    : `<i class="fas fa-exclamation-circle"></i> ${message}`;
+                
+                alertsContainer.innerHTML = '';
+                alertsContainer.appendChild(alert);
+                
+                // Scroll to the top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                // Remove alert after 5 seconds if it's a success message
+                if (type === 'success') {
+                    setTimeout(() => {
+                        alert.remove();
+                    }, 5000);
+                }
+            }
+            
+            // Funzione per aggiornare i campi dei link in base alle piattaforme selezionate
+            function updateChannelLinks() {
+                // Svuota il container
+                channelLinksContainer.innerHTML = '';
+                
+                // Controlla quali piattaforme sono selezionate
+                let selectedPlatforms = [];
+                platformCheckboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        selectedPlatforms.push(checkbox.value);
+                    }
+                });
+                
+                // Se non ci sono piattaforme selezionate, non fare nulla
+                if (selectedPlatforms.length === 0) return;
+                
+                // Crea campi di input per ogni piattaforma selezionata
+                selectedPlatforms.forEach(platform => {
+                    const linkFieldId = `channelUrl-${platform.toLowerCase().replace(' ', '-')}`;
+                    
+                    const formGroup = document.createElement('div');
+                    formGroup.className = 'form-group';
+                    
+                    const label = document.createElement('label');
+                    label.setAttribute('for', linkFieldId);
+                    label.textContent = `Link al Canale ${platform} *`;
+                    
+                    const input = document.createElement('input');
+                    input.type = 'url';
+                    input.id = linkFieldId;
+                    input.name = linkFieldId;
+                    input.placeholder = `https://`;
+                    input.required = true;
+                    
+                    const errorText = document.createElement('div');
+                    errorText.className = 'error-text';
+                    errorText.textContent = 'Inserisci un URL valido';
+                    
+                    formGroup.appendChild(label);
+                    formGroup.appendChild(input);
+                    formGroup.appendChild(errorText);
+                    
+                    channelLinksContainer.appendChild(formGroup);
+                });
+            }
+            
+            // Aggiungi event listener a tutte le checkbox delle piattaforme
+            platformCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateChannelLinks);
+            });
+            
+            // Validazione dei campi
+            function validateForm() {
+                let isValid = true;
+                const requiredFields = form.querySelectorAll('[required]');
+                
+                // Reset previous errors
+                form.querySelectorAll('.has-error').forEach(el => {
+                    el.classList.remove('has-error');
+                });
+                
+                // Check each required field
+                requiredFields.forEach(field => {
+                    const formGroup = field.closest('.form-group');
+                    
+                    if (field.type === 'checkbox' && !field.checked) {
+                        formGroup.classList.add('has-error');
+                        isValid = false;
+                    } else if (field.type === 'url') {
+                        // Simple URL validation
+                        if (!field.value || !field.value.match(/^https?:\/\/.+\..+/)) {
+                            formGroup.classList.add('has-error');
+                            isValid = false;
+                        }
+                    } else if (!field.value.trim()) {
+                        formGroup.classList.add('has-error');
+                        isValid = false;
+                    }
+                });
+                
+                // Age validation
+                const age = document.getElementById('age');
+                if (age.value < 13 || age.value > 99 || !age.value) {
+                    age.closest('.form-group').classList.add('has-error');
+                    isValid = false;
+                }
+                
+                // Check that at least one platform is selected
+                let platformSelected = false;
+                platformCheckboxes.forEach(checkbox => {
+                    if (checkbox.checked) platformSelected = true;
+                });
+                
+                if (!platformSelected) {
+                    platformCheckboxes[0].closest('.form-group').classList.add('has-error');
+                    isValid = false;
+                }
+                
+                return isValid;
+            }
+            
+            // Submit form
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validate form
+                if (!validateForm()) {
+                    showAlert('Compila correttamente tutti i campi obbligatori.', 'error');
+                    return;
+                }
+                
+                // Update button to loading state
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<span class="loading"></span> Invio in corso...';
+                
+                // Get current date and time
+                const now = new Date();
+                const timestamp = now.toISOString();
+                
+                // Prepare Discord embed
+                const embed = {
+                    embeds: [
+                        {
+                            title: "Nuova Candidatura Streamer FivePD",
+                            color: 3447003, // Colore blu
+                            fields: [
+                                {
+                                    name: "Nome / Nickname",
+                                    value: document.getElementById('nickname').value
+                                },
+                                {
+                                    name: "Età",
+                                    value: document.getElementById('age').value
+                                },
+                                {
+                                    name: "Discord",
+                                    value: document.getElementById('discord').value
+                                },
+                                {
+                                    name: "Nazionalità",
+                                    value: document.getElementById('nationality').value
+                                }
+                            ],
+                            timestamp: timestamp,
+                            footer: {
+                                text: "FivePD - Candidatura Streamer"
+                            }
+                        }
+                    ]
+                };
+                
+                // Aggiungi le piattaforme selezionate
+                let platformsText = '';
+                let selectedPlatforms = [];
+                
+                platformCheckboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        selectedPlatforms.push(checkbox.value);
+                        const linkFieldId = `channelUrl-${checkbox.value.toLowerCase().replace(' ', '-')}`;
+                        const linkUrl = document.getElementById(linkFieldId).value;
+                        
+                        platformsText += `${checkbox.value}: ${linkUrl}\n`;
+                    }
+                });
+                
+                embed.embeds[0].fields.push({
+                    name: "Piattaforme di Streaming",
+                    value: platformsText || "Nessuna piattaforma selezionata"
+                });
+                
+                embed.embeds[0].fields.push(
+                    {
+                        name: "Frequenza Live",
+                        value: document.getElementById('frequency').value
+                    },
+                    {
+                        name: "Orari Indicativi",
+                        value: document.getElementById('streamTime').value
+                    },
+                    {
+                        name: "Media Spettatori",
+                        value: document.getElementById('viewers').value
+                    }
+                );
+                
+                // Add optional fields with content
+                const experience = document.getElementById('experience').value;
+                if (experience) {
+                    embed.embeds[0].fields.push({
+                        name: "Esperienza",
+                        value: experience
+                    });
+                }
+                
+                // Add remaining required fields
+                embed.embeds[0].fields.push(
+                    {
+                        name: "Contenuti sul server",
+                        value: document.getElementById('content').value
+                    },
+                    {
+                        name: "Altri server",
+                        value: document.getElementById('otherServers').value
+                    },
+                    {
+                        name: "Accetta Regolamento",
+                        value: document.getElementById('rulesAccepted').checked ? "Sì" : "No"
+                    },
+                    {
+                        name: "Motivazione",
+                        value: document.getElementById('motivation').value
+                    }
+                );
+                
+                // Add optional "other" field if present
+                const other = document.getElementById('other').value;
+                if (other) {
+                    embed.embeds[0].fields.push({
+                        name: "Altro",
+                        value: other
+                    });
+                }
+    
+                // Send data to Discord webhook
+                fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(embed)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Success
+                        showAlert('Candidatura inviata con successo! Grazie per la tua richiesta.', 'success');
+                        form.reset();
+                        channelLinksContainer.innerHTML = ''; // Rimuovi i campi dei link
+                    } else {
+                        // Error
+                        throw new Error('Errore nell\'invio della candidatura. Riprova più tardi.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showAlert(error.message, 'error');
+                })
+                .finally(() => {
+                    // Reset button state
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Invia Candidatura';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

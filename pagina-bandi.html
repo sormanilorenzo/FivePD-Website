@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FivePD Italia - Portale Candidature</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary-blue: #0095ff;
+            --secondary-blue: #0066cc;
+            --dark-blue: #001e3c;
+            --light-blue: #e6f3ff;
+            --accent-green: #009900;
+            --accent-red: #cc0000;
+            --accent-white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f2f5;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+            color: white;
+            padding: 20px 0;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .logo {
+            max-width: 250px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .header-content {
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        .header-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header-content p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .italian-flag {
+            background: linear-gradient(to right, #009246 33.33%, #ffffff 33.33%, #ffffff 66.66%, #ce2b37 66.66%);
+            height: 6px;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        main {
+            padding: 50px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--dark-blue);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: var(--primary-blue);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .module-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .module-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .module-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .module-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .module-card:hover .module-image img {
+            transform: scale(1.1);
+        }
+        
+        .module-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6));
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+        
+        .module-content {
+            padding: 20px;
+        }
+        
+        .module-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--dark-blue);
+            display: flex;
+            align-items: center;
+        }
+        
+        .module-content h3 i {
+            margin-right: 10px;
+            color: var(--primary-blue);
+        }
+        
+        .module-content p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-blue);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.6s ease;
+            z-index: -1;
+        }
+        
+        .btn:hover {
+            background: var(--secondary-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn i {
+            margin-left: 8px;
+        }
+        
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+            padding: 0 15px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-blue);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--primary-blue);
+        }
+        
+        .footer-column ul li a i {
+            margin-right: 10px;
+            color: var(--primary-blue);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background: var(--primary-blue);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 600px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            transform: translateY(-50px);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            color: #aaa;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            color: #333;
+        }
+        
+        .modal.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2rem;
+            }
+            
+            .modules-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-column {
+                margin-bottom: 30px;
+            }
+        }
+        
+        /* Animation classes */
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .slide-up {
+            animation: slideUp 0.8s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Navigation Styles */
+        nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .active {
+            border-bottom: 3px solid white;
+        }
+    </style>
+</head>
+<body>
+    <header class="animate__animated animate__fadeIn">
+        <div class="container">
+            <div class="logo-container">
+                <img src="image/logo.png" alt="FivePD Italia Logo" class="logo">
+            </div>
+            <div class="header-content">
+                <h1 class="animate__animated animate__fadeInDown">FivePD Italia</h1>
+                <p class="animate__animated animate__fadeInUp">Server italiano di roleplay poliziesco su GTA V</p>
+            </div>
+            <div class="italian-flag"></div>
+        </div>
+    </header>
+    
+    <main>
+        <section class="container">
+            <div class="section-title animate__animated animate__fadeIn">
+                <h2>Candidature Aperte</h2>
+            </div>
+            
+            <div class="modules-grid">
+                <!-- Modulo Staff -->
+                <div class="module-card animate__animated animate__fadeInUp" style="animation-delay: 0.1s">
+                    <div class="module-image">
+                        <img src="/api/placeholder/600/400" alt="Staff FivePD">
+                        <div class="module-overlay"></div>
+                    </div>
+                    <div class="module-content">
+                        <h3><i class="fas fa-shield-alt"></i> Staff</h3>
+                        <p>Entra a far parte dello staff del nostro server. Aiuta a mantenere l'ordine, supporta i giocatori e contribuisci alla crescita della community.</p>
+                        <a href="modulo-staff.html" class="btn">Compila Modulo <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Modulo Streamer -->
+                <div class="module-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
+                    <div class="module-image">
+                        <img src="/api/placeholder/600/400" alt="Streamer FivePD">
+                        <div class="module-overlay"></div>
+                    </div>
+                    <div class="module-content">
+                        <h3><i class="fas fa-video"></i> Streamer</h3>
+                        <p>Sei uno streamer e vuoi trasmettere le tue avventure nel nostro server? Compila il modulo e diventa un content creator ufficiale.</p>
+                        <a href="modulo-streamer.html" class="btn">Compila Modulo <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Modulo Content Creator -->
+                <div class="module-card animate__animated animate__fadeInUp" style="animation-delay: 0.4s">
+                    <div class="module-image">
+                        <img src="/api/placeholder/600/400" alt="Content Creator FivePD">
+                        <div class="module-overlay"></div>
+                    </div>
+                    <div class="module-content">
+                        <h3><i class="fas fa-photo-video"></i> Content Creator</h3>
+                        <p>Crea contenuti per YouTube, TikTok o altre piattaforme? Unisciti a noi come content creator e promuovi il nostro server.</p>
+                        <a href="modulo-creator.html" class="btn">Compila Modulo <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                                
+                <!-- Modulo Sviluppatore -->
+                <div class="module-card animate__animated animate__fadeInUp" style="animation-delay: 0.5s">
+                    <div class="module-image">
+                        <img src="/api/placeholder/600/400" alt="Sviluppatore FivePD">
+                        <div class="module-overlay"></div>
+                    </div>
+                    <div class="module-content">
+                        <h3><i class="fas fa-code"></i> Sviluppatore</h3>
+                        <p>Sei un programmatore con esperienza in Lua o JavaScript? Unisciti al team tecnico e aiuta a sviluppare nuove funzionalità.</p>
+                        <a href="modulo-dev.html" class="btn">Compila Modulo <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Modulo Grafico -->
+                <div class="module-card animate__animated animate__fadeInUp" style="animation-delay: 0.3s">
+                    <div class="module-image">
+                        <img src="/api/placeholder/600/400" alt="Grafico FivePD">
+                        <div class="module-overlay"></div>
+                    </div>
+                    <div class="module-content">
+                        <h3><i class="fas fa-paint-brush"></i> Grafico</h3>
+                        <p>Hai talento nel design grafico? Entra nel nostro team e contribuisci a creare contenuti visivi per il server e i social media.</p>
+                        <a href="modulo-grafico.html" class="btn">Compila Modulo <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="container" style="margin-top: 70px;">
+            <div class="section-title animate__animated animate__fadeIn">
+                <h2>Come Funziona</h2>
+            </div>
+            
+            <div class="steps" style="display: flex; justify-content: space-around; flex-wrap: wrap; margin-top: 30px;">
+                <div class="step animate__animated animate__fadeInUp" style="text-align: center; max-width: 250px; margin: 20px;">
+                    <div style="font-size: 3rem; color: var(--primary-blue); margin-bottom: 15px;">
+                        <i class="fas fa-file-alt pulse"></i>
+                    </div>
+                    <h3 style="margin-bottom: 10px;">1. Compila il Modulo</h3>
+                    <p>Scegli la posizione che ti interessa e compila il relativo modulo di candidatura.</p>
+                </div>
+                
+                <div class="step animate__animated animate__fadeInUp" style="text-align: center; max-width: 250px; margin: 20px; animation-delay: 0.2s;">
+                    <div style="font-size: 3rem; color: var(--primary-blue); margin-bottom: 15px;">
+                        <i class="fas fa-clock pulse"></i>
+                    </div>
+                    <h3 style="margin-bottom: 10px;">2. Attendi la Revisione</h3>
+                    <p>Il nostro team esaminerà la tua candidatura entro 48-72 ore.</p>
+                </div>
+                
+                <div class="step animate__animated animate__fadeInUp" style="text-align: center; max-width: 250px; margin: 20px; animation-delay: 0.4s;">
+                    <div style="font-size: 3rem; color: var(--primary-blue); margin-bottom: 15px;">
+                        <i class="fas fa-comments pulse"></i>
+                    </div>
+                    <h3 style="margin-bottom: 10px;">3. Colloquio</h3>
+                    <p>Se selezionato, verrai contattato per un colloquio vocale su Discord.</p>
+                </div>
+                
+                <div class="step animate__animated animate__fadeInUp" style="text-align: center; max-width: 250px; margin: 20px; animation-delay: 0.6s;">
+                    <div style="font-size: 3rem; color: var(--primary-blue); margin-bottom: 15px;">
+                        <i class="fas fa-check-circle pulse"></i>
+                    </div>
+                    <h3 style="margin-bottom: 10px;">4. Benvenuto nel Team</h3>
+                    <p>Superato il colloquio, entrerai ufficialmente a far parte del team FivePD Italia!</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>FivePD Italia</h3>
+                    <p style="color: #aaa; line-height: 1.6; margin-bottom: 20px;">
+                        Entra a far parte della migliore esperienza di roleplay poliziesco su GTA V in Italia.
+                    </p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Link Utili</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Chi Siamo</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Regolamento</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Contatti</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contattaci</h3>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-discord"></i> Discord</a></li>
+                        <li><a href="mailto:info@fivepditalia.it"><i class="fas fa-envelope"></i> info@fivepditalia.it</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 FivePD Italia. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="closedApplicationModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal"><i class="fas fa-times"></i></span>
+            <div style="text-align: center; padding: 20px;">
+                <i class="fas fa-exclamation-circle" style="font-size: 3rem; color: var(--accent-red); margin-bottom: 20px;"></i>
+                <h2 style="margin-bottom: 15px;">Candidature Chiuse</h2>
+                <p style="font-size: 1.1rem; margin-bottom: 20px;">Al momento non cerchiamo più membri per questo ruolo. Ti invitiamo a seguire gli avvisi sul nostro server Discord per essere aggiornato quando saremo alla ricerca di nuovo personale.</p>
+                <a href="#" class="btn" style="background: var(--primary-blue);">
+                    <i class="fab fa-discord"></i> Unisciti al Discord
+                </a>
+            </div>
+        </div>
+    </div>    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        // Animate elements when they come into view
+        $(document).ready(function() {
+            // Check if element is in viewport
+            function isInViewport(element) {
+                const rect = element.getBoundingClientRect();
+                return (
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            }
+            
+            // Add animation classes when elements come into view
+            function animateOnScroll() {
+                $('.animate__animated:not(.animate__animated--triggered)').each(function() {
+                    if (isInViewport(this)) {
+                        $(this).addClass('animate__animated--triggered');
+                    }
+                });
+            }
+            
+            // Initial check and event listener
+            animateOnScroll();
+            $(window).on('scroll resize', animateOnScroll);
+            
+            // Smooth scrolling for anchor links
+            $('a[href^="#"]').on('click', function(e) {
+                e.preventDefault();
+                $('html, body').animate({
+                    scrollTop: $($(this).attr('href')).offset().top
+                }, 500, 'linear');
+            });
+        });
+
+        // Configurazione dello stato delle candidature
+        const applicationStatus = {
+            'staff': 'closed',     // Cambia in 'open' per aprire le candidature
+            'streamer': 'open',    // Cambia in 'closed' per chiudere le candidature
+            'creator': 'open',     // Cambia in 'closed' per chiudere le candidature
+            'dev': 'closed',       // Cambia in 'open' per aprire le candidature
+            'grafico': 'closed'      // Cambia in 'closed' per chiudere le candidature
+        };
+
+        // Gestione dei pulsanti di candidatura
+        document.addEventListener('DOMContentLoaded', function() {
+            // Seleziona tutti i pulsanti di candidatura
+            const applicationButtons = document.querySelectorAll('.btn');
+            
+            applicationButtons.forEach(button => {
+                // Ottieni il tipo di candidatura dal link
+                const href = button.getAttribute('href');
+                if (href && href.includes('modulo-')) {
+                    const type = href.replace('modulo-', '').replace('.html', '');
+                    
+                    // Controlla se le candidature sono chiuse per questo tipo
+                    if (applicationStatus[type] === 'closed') {
+                        // Modifica il comportamento del pulsante
+                        button.setAttribute('href', '#');
+                        button.classList.add('closed-application');
+                        button.style.background = '#aaaaaa'; // Grigio per indicare che è disabilitato
+                        button.innerHTML = 'Candidature Chiuse <i class="fas fa-lock"></i>';
+                        
+                        // Aggiungi event listener per mostrare il modal
+                        button.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            document.getElementById('closedApplicationModal').classList.add('active');
+                        });
+                    }
+                }
+            });
+            
+            // Chiudi il modal quando si clicca sulla X
+            const closeButtons = document.querySelectorAll('.close-modal');
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    document.querySelectorAll('.modal').forEach(modal => {
+                        modal.classList.remove('active');
+                    });
+                });
+            });
+            
+            // Chiudi il modal quando si clicca fuori dal modal
+            window.addEventListener('click', function(event) {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    if (event.target == modal) {
+                        modal.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
