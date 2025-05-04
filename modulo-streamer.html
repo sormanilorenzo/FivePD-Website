@@ -3,23 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FivePD - Candidatura Streamer</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>FivePD Italia - Portale Candidature Streamer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         :root {
-            --primary: #0095ff;
-            --primary-dark: #0077cc;
-            --primary-light: #42a5f5;
-            --accent: #0095ff;
-            --dark: #1a1a2e;
-            --darker: #0f0f1a;
-            --light: #f6f6f6;
-            --success: #43B581;
-            --danger: #F04747;
-            --warning: #FAA61A;
-            --italian-green: #009246;
-            --italian-red: #ce2b37;
-            --italian-white: #ffffff;
+            --primary-blue: #0095ff;
+            --secondary-blue: #0066cc;
+            --dark-blue: #001e3c;
+            --light-blue: #e6f3ff;
+            --accent-green: #009900;
+            --accent-red: #cc0000;
+            --accent-white: #ffffff;
         }
         
         * {
@@ -30,801 +25,1201 @@
         }
         
         body {
-            background-color: var(--dark);
-            color: var(--light);
-            line-height: 1.6;
-            background-image: linear-gradient(to bottom, var(--darker), var(--dark));
+            background-color: #f0f2f5;
+            color: #333;
+            overflow-x: hidden;
         }
         
         .container {
-            width: 100%;
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 1rem;
+            padding: 0 20px;
         }
         
         header {
-            text-align: center;
-            margin-bottom: 2rem;
-            padding: 1.5rem 0;
-            border-bottom: 3px solid var(--primary);
-            background-color: var(--darker);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+            color: white;
+            padding: 20px 0;
             position: relative;
-            overflow: hidden;
-        }
-        
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(to right, var(--italian-green), var(--italian-white), var(--italian-red));
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         
         .logo-container {
             display: flex;
             justify-content: center;
-            margin-bottom: 1rem;
+            align-items: center;
+            margin-bottom: 10px;
         }
         
-        .logo-container img {
-            max-width: 200px;
+        .logo {
+            max-width: 250px;
             height: auto;
+            transition: transform 0.3s ease;
         }
         
-        h1 {
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .header-content {
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        .header-content h1 {
             font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--light);
-            text-shadow: 0 0 10px rgba(0, 149, 255, 0.7);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
         
-        .subtitle {
-            color: #a4a4a4;
-            font-size: 1.1rem;
+        .header-content p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
         }
-        
-        .form-container {
-            background-color: var(--darker);
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-            border-top: 4px solid var(--primary);
-            position: relative;
-        }
-        
-        .form-container::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
+
+        .italian-flag {
+            background: linear-gradient(to right, #009246 33.33%, #ffffff 33.33%, #ffffff 66.66%, #ce2b37 66.66%);
+            height: 6px;
             width: 100%;
-            height: 4px;
-            background: linear-gradient(to right, var(--italian-green), var(--italian-white), var(--italian-red));
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        main {
+            padding: 50px 0;
         }
         
         .section-title {
-            font-size: 1.5rem;
-            margin: 1.5rem 0 1rem;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-shadow: 0 0 5px rgba(0, 149, 255, 0.3);
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
         }
         
-        .section-title:first-of-type {
-            margin-top: 0;
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--dark-blue);
+            display: inline-block;
+            padding-bottom: 10px;
         }
         
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-        
-        input[type="text"],
-        input[type="number"],
-        input[type="url"],
-        select,
-        textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border-radius: 5px;
-            border: 1px solid #3e4246;
-            background-color: #1e1e2e;
-            color: var(--light);
-            font-size: 1rem;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-        
-        input:focus,
-        select:focus,
-        textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 2px rgba(0, 149, 255, 0.3);
-        }
-        
-        textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-        
-        .checkbox-container {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            accent-color: var(--primary);
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: var(--primary-blue);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
         }
         
         .btn {
             display: inline-block;
-            padding: 0.8rem 1.5rem;
-            background-color: var(--primary);
+            background: var(--primary-blue);
             color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
             border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.6s ease;
+            z-index: -1;
         }
         
         .btn:hover {
-            background-color: var(--primary-dark);
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+            background: var(--secondary-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
         
-        .btn:active {
-            transform: translateY(2px);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        .btn:hover::before {
+            left: 100%;
         }
         
-        .btn-submit {
-            width: 100%;
-            padding: 1rem;
-            font-size: 1.1rem;
-            margin-top: 1rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 0.5rem;
-            background: linear-gradient(to right, var(--primary-dark), var(--primary));
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn-submit::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(to right, var(--italian-green), var(--italian-white), var(--italian-red));
-        }
-        
-        .row {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        .col {
-            flex: 1;
-            min-width: 200px;
-        }
-        
-        .error-text {
-            color: var(--danger);
-            font-size: 0.9rem;
-            margin-top: 0.3rem;
-            display: none;
-        }
-        
-        .has-error input,
-        .has-error select,
-        .has-error textarea {
-            border-color: var(--danger);
-        }
-        
-        .has-error .error-text {
-            display: block;
-        }
-        
-        .alert {
-            padding: 1rem;
-            border-radius: 5px;
-            margin-bottom: 1rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        
-        .alert-success {
-            background-color: var(--success);
-            color: white;
-        }
-        
-        .alert-error {
-            background-color: var(--danger);
-            color: white;
-        }
-        
-        .hidden {
-            display: none;
-        }
-        
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 1s ease-in-out infinite;
-        }
-        
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-        
-        .italian-flag {
-            display: inline-block;
-            margin-left: 5px;
-        }
-        
-        .italian-flag span {
-            display: inline-block;
-            width: 8px;
-            height: 15px;
-        }
-        
-        .italian-flag .green {
-            background-color: var(--italian-green);
-        }
-        
-        .italian-flag .white {
-            background-color: var(--italian-white);
-        }
-        
-        .italian-flag .red {
-            background-color: var(--italian-red);
-        }
-        
-        .glow-effect {
-            position: relative;
-        }
-        
-        .glow-effect::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--primary), transparent, var(--primary));
-            z-index: -1;
-            border-radius: 12px;
-            animation: glowing 3s linear infinite;
-            opacity: 0.5;
-        }
-        
-        @keyframes glowing {
-            0% {
-                background-position: 0 0;
-            }
-            50% {
-                background-position: 400% 0;
-            }
-            100% {
-                background-position: 0 0;
-            }
+        .btn i {
+            margin-left: 8px;
         }
         
         footer {
-            text-align: center;
-            margin-top: 2rem;
-            color: #a4a4a4;
-            font-size: 0.9rem;
-            padding: 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--dark-blue);
+            color: white;
+            padding: 40px 0 20px;
         }
         
-        @media (max-width: 600px) {
-            .row {
-                flex-direction: column;
-                gap: 0;
-            }
-            
-            .section-title {
-                font-size: 1.3rem;
-            }
-            
-            h1 {
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+            padding: 0 15px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-blue);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--primary-blue);
+        }
+        
+        .footer-column ul li a i {
+            margin-right: 10px;
+            color: var(--primary-blue);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background: var(--primary-blue);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 600px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            transform: translateY(-50px);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            color: #aaa;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            color: #333;
+        }
+        
+        .modal.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .header-content h1 {
                 font-size: 2rem;
             }
             
-            .container {
-                padding: 0.5rem;
+            .footer-content {
+                flex-direction: column;
             }
             
-            .form-container {
-                padding: 1rem;
+            .footer-column {
+                margin-bottom: 30px;
             }
+        }
+        
+        /* Animation classes */
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .slide-up {
+            animation: slideUp 0.8s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Navigation Styles */
+        nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .active {
+            border-bottom: 3px solid white;
+        }
+
+        /* Login e Form Styles */
+        .auth-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .discord-login {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .discord-btn {
+            background: #5865F2;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .discord-btn:hover {
+            background: #4752c4;
+            transform: translateY(-3px);
+        }
+
+        .form-container {
+            display: none;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--dark-blue);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-blue);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 149, 255, 0.1);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .platform-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .platform-option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .platform-option input {
+            margin-right: 8px;
+        }
+
+        .platform-link {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .stream-frequency {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .frequency-option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .frequency-option input {
+            margin-right: 8px;
+        }
+
+        .submit-btn {
+            background: var(--accent-green);
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            background: #007700;
+        }
+
+        .error-message {
+            color: var(--accent-red);
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 15px;
+            background: var(--light-blue);
+            border-radius: 8px;
+        }
+
+        .user-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .user-info h3 {
+            margin: 0;
+            color: var(--dark-blue);
+        }
+
+        .user-info p {
+            margin: 5px 0 0;
+            color: #666;
+        }
+
+        .notification {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Loader */
+        .loader {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .loader i {
+            animation: spin 1s linear infinite;
+            color: var(--primary-blue);
+            font-size: 2rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Checkbox style for agreement */
+        .agreement-checkbox {
+            display: flex;
+            align-items: flex-start;
+            margin-top: 20px;
+        }
+
+        .agreement-checkbox input[type="checkbox"] {
+            margin-right: 10px;
+            margin-top: 4px;
+        }
+
+        .agreement-checkbox label {
+            font-size: 0.95rem;
+            line-height: 1.4;
+            color: #555;
+        }
+
+        .agreement-checkbox a {
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .agreement-checkbox a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <!-- Placeholder for logo - replace with actual logo URL -->
+    <header class="animate__animated animate__fadeIn">
+        <div class="container">
             <div class="logo-container">
-                <img src="image/logo.png" alt="logo" id="logo-image">
+                <img src="image/logo.png" alt="FivePD Italia Logo" class="logo">
             </div>
-            <h1>FivePD Candidatura Streamer</h1>
-            <p class="subtitle">Compila il modulo per unirti al nostro team di streamer</p>
-        </header>
-        
-        <div id="alerts"></div>
-        
-        <form id="streamerForm" class="form-container glow-effect">
-            <!-- DATI PERSONALI -->
-            <h2 class="section-title"><i class="fas fa-user"></i> Dati Personali</h2>
-            
-            <div class="form-group">
-                <label for="nickname">Nome o Nickname *</label>
-                <input type="text" id="nickname" name="nickname" required maxlength="50">
-                <div class="error-text">Questo campo è obbligatorio</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Chi Siamo</a></li>
+                    <li><a href="#" class="active">Candidature</a></li>
+                    <li><a href="#">Regolamento</a></li>
+                    <li><a href="#">Contatti</a></li>
+                </ul>
+            </nav>
+            <div class="header-content">
+                <h1 class="animate__animated animate__fadeInDown">Candidatura Streamer</h1>
+                <p class="animate__animated animate__fadeInUp">Entra a far parte del team di content creator di FivePD Italia</p>
             </div>
-            
-            <div class="row">
-                <div class="col form-group">
-                    <label for="age">Età *</label>
-                    <input type="number" id="age" name="age" min="13" max="99" required>
-                    <div class="error-text">Inserisci un'età valida (13-99)</div>
-                </div>
-                
-                <div class="col form-group">
-                    <label for="discord">Discord *</label>
-                    <input type="text" id="discord" name="discord" placeholder="Nome#0000 o Username" required>
-                    <div class="error-text">Questo campo è obbligatorio</div>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label for="nationality">Nazionalità / Lingua parlata *</label>
-                <div style="display: flex; align-items: center;">
-                    <input type="text" id="nationality" name="nationality" required style="flex: 1;">
-                    <div class="italian-flag" style="margin-left: 10px;">
-                        <span class="green"></span>
-                        <span class="white"></span>
-                        <span class="red"></span>
-                    </div>
-                </div>
-                <div class="error-text">Questo campo è obbligatorio</div>
-            </div>
-            
-            <!-- DATI STREAMING -->
-            <h2 class="section-title"><i class="fas fa-video"></i> Dati Streaming</h2>
-
-            <div class="form-group">
-                <label>Piattaforme di Streaming *</label>
-                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin-top: 10px;">
-                    <div class="checkbox-container">
-                        <input type="checkbox" id="platform-twitch" name="platforms" value="Twitch" class="platform-checkbox">
-                        <label for="platform-twitch">Twitch</label>
-                    </div>
-                    <div class="checkbox-container">
-                        <input type="checkbox" id="platform-youtube" name="platforms" value="YouTube" class="platform-checkbox">
-                        <label for="platform-youtube">YouTube</label>
-                    </div>
-                    <div class="checkbox-container">
-                        <input type="checkbox" id="platform-kick" name="platforms" value="Kick" class="platform-checkbox">
-                        <label for="platform-kick">Kick</label>
-                    </div>
-                    <div class="checkbox-container">
-                        <input type="checkbox" id="platform-tiktok" name="platforms" value="TikTok" class="platform-checkbox">
-                        <label for="platform-tiktok">TikTok</label>
-                    </div>
-                    <div class="checkbox-container">
-                        <input type="checkbox" id="platform-altro" name="platforms" value="Altro" class="platform-checkbox">
-                        <label for="platform-altro">Altro</label>
-                    </div>
-                </div>
-                <div class="error-text">Seleziona almeno una piattaforma</div>
-            </div>
-
-            <div id="channel-links-container">
-                <!-- I campi per i link ai canali verranno generati dinamicamente qui -->
-            </div>
-
-            <div class="row">
-                <div class="col form-group">
-                    <label for="frequency">Frequenza delle Live *</label>
-                    <select id="frequency" name="frequency" required>
-                        <option value="">Seleziona...</option>
-                        <option value="Giornaliera">Giornaliera</option>
-                        <option value="Settimanale">Settimanale</option>
-                        <option value="Mensile">Mensile</option>
-                        <option value="Altro">Altro</option>
-                    </select>
-                    <div class="error-text">Seleziona una frequenza</div>
-                </div>
-                
-                <div class="col form-group">
-                    <label for="streamTime">Orari Indicativi delle Live *</label>
-                    <input type="text" id="streamTime" name="streamTime" placeholder="Es: 18:00 - 21:00 (CET)" required>
-                    <div class="error-text">Questo campo è obbligatorio</div>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label for="viewers">Numero medio di spettatori *</label>
-                <input type="number" id="viewers" name="viewers" min="0" required>
-                <div class="error-text">Inserisci un numero valido</div>
-            </div>
-            
-            <div class="form-group">
-                <label for="experience">Esperienza pregressa nello streaming</label>
-                <textarea id="experience" name="experience" maxlength="500" placeholder="Racconta la tua esperienza (opzionale)"></textarea>
-            </div>
-            
-            <!-- ATTIVITÀ SUL SERVER -->
-            <h2 class="section-title"><i class="fas fa-server"></i> Attività sul Server</h2>
-            
-            <div class="form-group">
-                <label for="content">Che tipo di contenuti porteresti nel server? *</label>
-                <textarea id="content" name="content" required maxlength="500" placeholder="Descrivi i contenuti che intendi proporre"></textarea>
-                <div class="error-text">Questo campo è obbligatorio</div>
-            </div>
-            
-            <div class="form-group">
-                <label for="otherServers">Hai già streammato su altri server simili? *</label>
-                <textarea id="otherServers" name="otherServers" required maxlength="500" placeholder="Condividi la tua esperienza con altri server"></textarea>
-                <div class="error-text">Questo campo è obbligatorio</div>
-            </div>
-            
-            <div class="form-group checkbox-container">
-                <input type="checkbox" id="rulesAccepted" name="rulesAccepted" required>
-                <label for="rulesAccepted">Ho letto e accettato il regolamento *</label>
-                <div class="error-text">Devi accettare il regolamento</div>
-            </div>
-            
-            <!-- ALTRE INFORMAZIONI -->
-            <h2 class="section-title"><i class="fas fa-info-circle"></i> Altre Informazioni</h2>
-            
-            <div class="form-group">
-                <label for="motivation">Motivazione per entrare come streamer nel server *</label>
-                <textarea id="motivation" name="motivation" required maxlength="500" placeholder="Spiega perché vuoi diventare uno streamer nel nostro server"></textarea>
-                <div class="error-text">Questo campo è obbligatorio</div>
-            </div>
-            
-            <div class="form-group">
-                <label for="other">Altro da dichiarare</label>
-                <textarea id="other" name="other" maxlength="500" placeholder="Informazioni aggiuntive (opzionale)"></textarea>
-            </div>
-            
-            <button type="submit" class="btn btn-submit" id="submitBtn">
-                <i class="fas fa-paper-plane"></i> Invia Candidatura
-            </button>
-        </form>
-        
-        <footer>
-            &copy; 2025 - FivePD - Modulo di Candidatura Streamer
-        </footer>
-    </div>
+            <div class="italian-flag"></div>
+        </div>
+    </header>
     
+    <main>
+        <div class="container">
+            <div class="section-title animate__animated animate__fadeIn">
+                <h2>Candidati come Streamer di FivePD Italia</h2>
+            </div>
+            
+            <div class="auth-container animate__animated animate__fadeIn">
+                <div id="login-section">
+                    <h3>Per candidarti è necessario accedere con Discord</h3>
+                    <p>Utilizziamo Discord per verificare la tua identità e facilitare il processo di candidatura.</p>
+                    
+                    <div class="discord-login">
+                        <a href="#" id="discord-auth-btn" class="btn discord-btn">
+                            <i class="fab fa-discord"></i> Accedi con Discord
+                        </a>
+                    </div>
+                </div>
+                
+                <div id="form-section" class="form-container">
+                    <div id="notification" style="display: none;"></div>
+                    
+                    <div class="user-profile">
+                        <img id="user-avatar" src="/api/placeholder/60/60" alt="Avatar" class="user-avatar">
+                        <div class="user-info">
+                            <h3 id="user-username">Username</h3>
+                            <p id="user-tag">Tag#0000</p>
+                        </div>
+                    </div>
+                    
+                    <form id="streamer-application-form">
+                        <div class="form-group">
+                            <label for="nickname">Nome o Nickname: *</label>
+                            <input type="text" id="nickname" class="form-control" required>
+                            <div class="error-message" id="nickname-error">Inserisci un nome o nickname</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="age">Età: *</label>
+                            <input type="number" id="age" class="form-control" min="16" required>
+                            <div class="error-message" id="age-error">Inserisci la tua età</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="discord">Discord: *</label>
+                            <input type="text" id="discord" class="form-control" required>
+                            <div class="error-message" id="discord-error">Inserisci il tuo Discord</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="nationality">Nazionalità / Lingua parlata: *</label>
+                            <input type="text" id="nationality" class="form-control" required>
+                            <div class="error-message" id="nationality-error">Inserisci la tua nazionalità/lingua</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Piattaforme di Streaming: *</label>
+                            <div class="platform-options">
+                                <label class="platform-option">
+                                    <input type="checkbox" name="platform" value="twitch" class="platform-checkbox"> Twitch
+                                </label>
+                                <label class="platform-option">
+                                    <input type="checkbox" name="platform" value="youtube" class="platform-checkbox"> YouTube
+                                </label>
+                                <label class="platform-option">
+                                    <input type="checkbox" name="platform" value="kick" class="platform-checkbox"> Kick
+                                </label>
+                                <label class="platform-option">
+                                    <input type="checkbox" name="platform" value="tiktok" class="platform-checkbox"> TikTok
+                                </label>
+                                <label class="platform-option">
+                                    <input type="checkbox" name="platform" value="altro" class="platform-checkbox"> Altro
+                                </label>
+                            </div>
+                            <div class="error-message" id="platform-error">Seleziona almeno una piattaforma</div>
+                            
+                            <!-- Campi per i link delle piattaforme -->
+                            <div id="twitch-link" class="platform-link">
+                                <label for="twitch-url">Link Twitch:</label>
+                                <input type="url" id="twitch-url" class="form-control" placeholder="https://twitch.tv/username">
+                            </div>
+                            
+                            <div id="youtube-link" class="platform-link">
+                                <label for="youtube-url">Link YouTube:</label>
+                                <input type="url" id="youtube-url" class="form-control" placeholder="https://youtube.com/c/username">
+                            </div>
+                            
+                            <div id="kick-link" class="platform-link">
+                                <label for="kick-url">Link Kick:</label>
+                                <input type="url" id="kick-url" class="form-control" placeholder="https://kick.com/username">
+                            </div>
+                            
+                            <div id="tiktok-link" class="platform-link">
+                                <label for="tiktok-url">Link TikTok:</label>
+                                <input type="url" id="tiktok-url" class="form-control" placeholder="https://tiktok.com/@username">
+                            </div>
+                            
+                            <div id="altro-link" class="platform-link">
+                                <label for="altro-url">Link Altra Piattaforma:</label>
+                                <input type="url" id="altro-url" class="form-control" placeholder="https://example.com/username">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Frequenza delle Live: *</label>
+                            <div class="stream-frequency">
+                                <label class="frequency-option">
+                                    <input type="radio" name="frequency" value="giornaliera"> Giornaliera
+                                </label>
+                                <label class="frequency-option">
+                                    <input type="radio" name="frequency" value="settimanale"> Settimanale
+                                </label>
+                                <label class="frequency-option">
+                                    <input type="radio" name="frequency" value="mensile"> Mensile
+                                </label>
+                                <label class="frequency-option">
+                                    <input type="radio" name="frequency" value="altro"> Altro
+                                </label>
+                            </div>
+                            <div class="error-message" id="frequency-error">Seleziona la frequenza delle tue live</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="stream-hours">Orari Indicativi delle Live: *</label>
+                            <input type="text" id="stream-hours" class="form-control" placeholder="Es: 18:00-22:00" required>
+                            <div class="error-message" id="stream-hours-error">Inserisci gli orari indicativi delle tue live</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="viewers">Numero medio di spettatori: *</label>
+                            <input type="number" id="viewers" class="form-control" min="0" required>
+                            <div class="error-message" id="viewers-error">Inserisci il numero medio di spettatori</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="experience">Esperienza pregressa nello streaming: *</label>
+                            <textarea id="experience" class="form-control" required></textarea>
+                            <div class="error-message" id="experience-error">Descrivi la tua esperienza pregressa</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="content-type">Che tipo di contenuti porteresti nel server? *</label>
+                            <textarea id="content-type" class="form-control" required></textarea>
+                            <div class="error-message" id="content-type-error">Descrivi i contenuti che vorresti portare</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="other-servers">Hai già streammato su altri server simili? *</label>
+                            <textarea id="other-servers" class="form-control" required></textarea>
+                            <div class="error-message" id="other-servers-error">Rispondi alla domanda</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="motivation">Motivazione per entrare come streamer nel server: *</label>
+                            <textarea id="motivation" class="form-control" required></textarea>
+                            <div class="error-message" id="motivation-error">Inserisci la tua motivazione</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="other-info">Altro da dichiarare:</label>
+                            <textarea id="other-info" class="form-control"></textarea>
+                        </div>
+                        
+                        <div class="agreement-checkbox">
+                            <input type="checkbox" id="rules-agreement" required>
+                            <label for="rules-agreement">Ho letto e accettato il <a href="#" target="_blank">regolamento</a> di FivePD Italia *</label>
+                        </div>
+                        <div class="error-message" id="agreement-error">Devi accettare il regolamento per procedere</div>
+                        
+                        <input type="hidden" id="discord-id" value="">
+                        
+                        <button type="submit" class="btn submit-btn">
+                            Invia Candidatura <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                    
+                    <div id="loader" class="loader">
+                        <i class="fas fa-spinner"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>FivePD Italia</h3>
+                    <p style="color: #aaa; line-height: 1.6; margin-bottom: 20px;">
+                        Entra a far parte della migliore esperienza di roleplay poliziesco su GTA V in Italia.
+                    </p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Link Utili</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Chi Siamo</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Regolamento</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Contatti</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contattaci</h3>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-discord"></i> Discord</a></li>
+                        <li><a href="mailto:info@fivepditalia.it"><i class="fas fa-envelope"></i> info@fivepditalia.it</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 FivePD Italia. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
-        // Set the logo from the image shown in the message
-        document.addEventListener('DOMContentLoaded', function() {
-            // Replace the placeholder with the actual FivePD logo URL
-            document.getElementById('logo-image').src = "image/logo.png"; // Replace with actual logo URL
+        $(document).ready(function() {
+            // Variabili per l'autenticazione OAuth2 di Discord
+            const CLIENT_ID = '1368372654259835021'; 
+            const REDIRECT_URI = window.location.origin + window.location.pathname;
+            const WEBHOOK_URL = 'https://discord.com/api/webhooks/1368184015575842886/hHmJ8Qz_xaSAkwVPtNVINnm_x05XmR103npSoRj8CWwDWdUa-tS9UqLlrXthpb_0QCZG';
+            const SCOPE = 'identify';
             
-            const form = document.getElementById('streamerForm');
-            const submitBtn = document.getElementById('submitBtn');
-            const alertsContainer = document.getElementById('alerts');
-            const platformCheckboxes = document.querySelectorAll('.platform-checkbox');
-            const channelLinksContainer = document.getElementById('channel-links-container');
+            // Dati utente Discord
+            let discordUserData = null;
             
-            // Webhook URL - DA SOSTITUIRE CON IL VOSTRO WEBHOOK DISCORD
-            const webhookUrl = 'https://discord.com/api/webhooks/1368184015575842886/hHmJ8Qz_xaSAkwVPtNVINnm_x05XmR103npSoRj8CWwDWdUa-tS9UqLlrXthpb_0QCZG'; // SOSTITUIRE CON IL VOSTRO URL WEBHOOK
+            // Gestione delle piattaforme di streaming
+            $('.platform-checkbox').change(function() {
+                const platform = $(this).val();
+                const linkDiv = $(`#${platform}-link`);
+                
+                if ($(this).is(':checked')) {
+                    linkDiv.slideDown(300);
+                } else {
+                    linkDiv.slideUp(300);
+                }
+            });
             
-            // Mostra un alert
-            function showAlert(message, type) {
-                const alert = document.createElement('div');
-                alert.className = `alert alert-${type}`;
-                alert.innerHTML = type === 'success' 
-                    ? `<i class="fas fa-check-circle"></i> ${message}`
-                    : `<i class="fas fa-exclamation-circle"></i> ${message}`;
+            // Verifica autenticazione all'avvio
+            checkAuth();
+            
+            // Event listener per il pulsante di autenticazione Discord
+            $('#discord-auth-btn').click(function() {
+                redirectToDiscordAuth();
+            });
+            
+            // Gestione invio form
+            $('#streamer-application-form').submit(function(e) {
+                e.preventDefault();
+                if (validateForm()) {
+                    submitForm();
+                }
+            });
+            
+            // Verifica se l'utente ha già effettuato l'autenticazione
+            function checkAuth() {
+                // Controlla se c'è un token nell'URL (callback da Discord)
+                const urlParams = new URLSearchParams(window.location.hash.substring(1));
+                const accessToken = urlParams.get('access_token');
                 
-                alertsContainer.innerHTML = '';
-                alertsContainer.appendChild(alert);
-                
-                // Scroll to the top
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                
-                // Remove alert after 5 seconds if it's a success message
-                if (type === 'success') {
-                    setTimeout(() => {
-                        alert.remove();
-                    }, 5000);
+                if (accessToken) {
+                    // Rimuovi il token dall'URL per sicurezza
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                    
+                    // Salva il token nel localStorage
+                    localStorage.setItem('discord_token', accessToken);
+                    
+                    // Ottieni i dati dell'utente
+                    fetchDiscordUserData(accessToken);
+                } else {
+                    // Controlla se c'è un token nel localStorage
+                    const storedToken = localStorage.getItem('discord_token');
+                    if (storedToken) {
+                        fetchDiscordUserData(storedToken);
+                    }
                 }
             }
             
-            // Funzione per aggiornare i campi dei link in base alle piattaforme selezionate
-            function updateChannelLinks() {
-                // Svuota il container
-                channelLinksContainer.innerHTML = '';
-                
-                // Controlla quali piattaforme sono selezionate
-                let selectedPlatforms = [];
-                platformCheckboxes.forEach(checkbox => {
-                    if (checkbox.checked) {
-                        selectedPlatforms.push(checkbox.value);
+            // Ottieni i dati dell'utente Discord
+            function fetchDiscordUserData(token) {
+                fetch('https://discord.com/api/users/@me', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
                     }
-                });
-                
-                // Se non ci sono piattaforme selezionate, non fare nulla
-                if (selectedPlatforms.length === 0) return;
-                
-                // Crea campi di input per ogni piattaforma selezionata
-                selectedPlatforms.forEach(platform => {
-                    const linkFieldId = `channelUrl-${platform.toLowerCase().replace(' ', '-')}`;
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        // Token non valido o scaduto
+                        throw new Error('Token scaduto o non valido');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Salva i dati dell'utente
+                    discordUserData = data;
                     
-                    const formGroup = document.createElement('div');
-                    formGroup.className = 'form-group';
+                    // Mostra il form e nascondi la sezione di login
+                    $('#login-section').hide();
+                    $('#form-section').fadeIn(500);
                     
-                    const label = document.createElement('label');
-                    label.setAttribute('for', linkFieldId);
-                    label.textContent = `Link al Canale ${platform} *`;
-                    
-                    const input = document.createElement('input');
-                    input.type = 'url';
-                    input.id = linkFieldId;
-                    input.name = linkFieldId;
-                    input.placeholder = `https://`;
-                    input.required = true;
-                    
-                    const errorText = document.createElement('div');
-                    errorText.className = 'error-text';
-                    errorText.textContent = 'Inserisci un URL valido';
-                    
-                    formGroup.appendChild(label);
-                    formGroup.appendChild(input);
-                    formGroup.appendChild(errorText);
-                    
-                    channelLinksContainer.appendChild(formGroup);
+                    // Mostra i dati dell'utente
+                    displayUserInfo(data);
+                })
+                .catch(error => {
+                    console.error('Errore autenticazione Discord:', error);
+                    localStorage.removeItem('discord_token');
                 });
             }
             
-            // Aggiungi event listener a tutte le checkbox delle piattaforme
-            platformCheckboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', updateChannelLinks);
-            });
+            // Reindirizza a Discord per l'autenticazione
+            function redirectToDiscordAuth() {
+                const authUrl = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=token&scope=${SCOPE}`;
+                window.location.href = authUrl;
+            }
             
-            // Validazione dei campi
+            // Mostra i dati dell'utente autenticato
+            function displayUserInfo(userData) {
+                // Imposta avatar
+                const avatarUrl = userData.avatar 
+                    ? `https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png` 
+                    : "/api/placeholder/60/60";
+                
+                $('#user-avatar').attr('src', avatarUrl);
+                
+                // Imposta username e tag
+                $('#user-username').text(userData.username);
+                $('#user-tag').text(`ID: ${userData.id}`);
+                
+                // Compila il campo Discord e lo rende di sola lettura
+                $('#discord').val(userData.username);
+                $('#discord').attr('readonly', true);
+                
+                // Salva l'ID Discord nell'input nascosto
+                $('#discord-id').val(userData.id);
+            }
+            
+            // Funzione di logout
+            function logoutDiscord() {
+                localStorage.removeItem('discord_token');
+                discordUserData = null;
+                location.reload();
+            }
+            
+            // Validazione del form
             function validateForm() {
                 let isValid = true;
-                const requiredFields = form.querySelectorAll('[required]');
                 
-                // Reset previous errors
-                form.querySelectorAll('.has-error').forEach(el => {
-                    el.classList.remove('has-error');
-                });
+                // Reset dei messaggi di errore
+                $('.error-message').hide();
                 
-                // Check each required field
+                // Verifica se l'utente è autenticato con Discord
+                if (!discordUserData) {
+                    showNotification('Devi autenticarti con Discord prima di inviare la candidatura', 'error');
+                    return false;
+                }
+                
+                // Valida i campi obbligatori
+                const requiredFields = [
+                    { id: 'nickname', error: 'nickname-error' },
+                    { id: 'age', error: 'age-error' },
+                    { id: 'discord', error: 'discord-error' },
+                    { id: 'nationality', error: 'nationality-error' },
+                    { id: 'stream-hours', error: 'stream-hours-error' },
+                    { id: 'viewers', error: 'viewers-error' },
+                    { id: 'experience', error: 'experience-error' },
+                    { id: 'content-type', error: 'content-type-error' },
+                    { id: 'other-servers', error: 'other-servers-error' },
+                    { id: 'motivation', error: 'motivation-error' }
+                ];
+                
                 requiredFields.forEach(field => {
-                    const formGroup = field.closest('.form-group');
-                    
-                    if (field.type === 'checkbox' && !field.checked) {
-                        formGroup.classList.add('has-error');
-                        isValid = false;
-                    } else if (field.type === 'url') {
-                        // Simple URL validation
-                        if (!field.value || !field.value.match(/^https?:\/\/.+\..+/)) {
-                            formGroup.classList.add('has-error');
-                            isValid = false;
-                        }
-                    } else if (!field.value.trim()) {
-                        formGroup.classList.add('has-error');
+                    if (!$(`#${field.id}`).val().trim()) {
+                        $(`#${field.error}`).show();
                         isValid = false;
                     }
                 });
                 
-                // Age validation
-                const age = document.getElementById('age');
-                if (age.value < 13 || age.value > 99 || !age.value) {
-                    age.closest('.form-group').classList.add('has-error');
+                // Verifica che almeno una piattaforma sia selezionata
+                if (!$('input[name="platform"]:checked').length) {
+                    $('#platform-error').show();
                     isValid = false;
                 }
                 
-                // Check that at least one platform is selected
-                let platformSelected = false;
-                platformCheckboxes.forEach(checkbox => {
-                    if (checkbox.checked) platformSelected = true;
-                });
+                // Verifica che sia selezionata una frequenza
+                if (!$('input[name="frequency"]:checked').length) {
+                    $('#frequency-error').show();
+                    isValid = false;
+                }
                 
-                if (!platformSelected) {
-                    platformCheckboxes[0].closest('.form-group').classList.add('has-error');
+                // Verifica accettazione regolamento
+                if (!$('#rules-agreement').is(':checked')) {
+                    $('#agreement-error').show();
                     isValid = false;
                 }
                 
                 return isValid;
             }
             
-            // Submit form
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
+            // Mostra notifica
+            function showNotification(message, type) {
+                const notification = $('#notification');
+                notification.removeClass('success error').addClass(type);
+                notification.text(message);
+                notification.fadeIn(300);
                 
-                // Validate form
-                if (!validateForm()) {
-                    showAlert('Compila correttamente tutti i campi obbligatori.', 'error');
-                    return;
+                // Scroll to top
+                $('html, body').animate({ scrollTop: 0 }, 300);
+                
+                // Auto-hide success messages after 5 seconds
+                if (type === 'success') {
+                    setTimeout(() => {
+                        notification.fadeOut(300);
+                    }, 5000);
                 }
+            }
+            
+            // Invia il form a Discord tramite webhook
+            function submitForm() {
+                // Mostra loader
+                $('#loader').show();
                 
-                // Update button to loading state
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = '<span class="loading"></span> Invio in corso...';
+                // Disabilita il pulsante di invio
+                $('.submit-btn').prop('disabled', true);
                 
-                // Get current date and time
-                const now = new Date();
-                const timestamp = now.toISOString();
+                // Ottieni i valori dei campi
+                const formData = {
+                    nickname: $('#nickname').val(),
+                    age: $('#age').val(),
+                    discord: $('#discord').val(),
+                    discordId: $('#discord-id').val(),
+                    nationality: $('#nationality').val(),
+                    platforms: [],
+                    frequency: $('input[name="frequency"]:checked').val(),
+                    streamHours: $('#stream-hours').val(),
+                    viewers: $('#viewers').val(),
+                    experience: $('#experience').val(),
+                    contentType: $('#content-type').val(),
+                    otherServers: $('#other-servers').val(),
+                    motivation: $('#motivation').val(),
+                    otherInfo: $('#other-info').val() || 'Nessuna informazione aggiuntiva'
+                };
                 
-                // Prepare Discord embed
+                // Raccogli informazioni sulle piattaforme selezionate
+                $('input[name="platform"]:checked').each(function() {
+                    const platform = $(this).val();
+                    const urlId = `${platform}-url`;
+                    const url = $(`#${urlId}`).val() || 'URL non fornito';
+                    
+                    formData.platforms.push({
+                        name: platform,
+                        url: url
+                    });
+                });
+                
+                // Crea l'embed per Discord
+                const platformsText = formData.platforms.map(p => 
+                    `**${p.name}**: ${p.url}`
+                ).join('\n') || 'Nessuna piattaforma selezionata';
+                
                 const embed = {
+                    content: "@here Nuova candidatura streamer", // Puoi taggare un ruolo specifico
                     embeds: [
                         {
-                            title: "Nuova Candidatura Streamer FivePD",
-                            color: 3447003, // Colore blu
+                            title: "Nuova Candidatura Streamer",
+                            color: 3447003, // Blu
+                            author: {
+                                name: discordUserData.username,
+                                icon_url: discordUserData.avatar 
+                                    ? `https://cdn.discordapp.com/avatars/${discordUserData.id}/${discordUserData.avatar}.png` 
+                                    : null
+                            },
+                            description: `**Candidatura inviata da:** <@${discordUserData.id}>`,
                             fields: [
                                 {
                                     name: "Nome / Nickname",
-                                    value: document.getElementById('nickname').value
+                                    value: formData.nickname,
+                                    inline: true
                                 },
                                 {
                                     name: "Età",
-                                    value: document.getElementById('age').value
+                                    value: formData.age.toString(),
+                                    inline: true
                                 },
                                 {
                                     name: "Discord",
-                                    value: document.getElementById('discord').value
+                                    value: `<@${discordUserData.id}>`,
+                                    inline: true
                                 },
                                 {
-                                    name: "Nazionalità",
-                                    value: document.getElementById('nationality').value
+                                    name: "Nazionalità / Lingua",
+                                    value: formData.nationality,
+                                    inline: true
+                                },
+                                {
+                                    name: "Piattaforme di Streaming",
+                                    value: platformsText
+                                },
+                                {
+                                    name: "Frequenza delle Live",
+                                    value: formData.frequency,
+                                    inline: true
+                                },
+                                {
+                                    name: "Orari Indicativi",
+                                    value: formData.streamHours,
+                                    inline: true
+                                },
+                                {
+                                    name: "Media Spettatori",
+                                    value: formData.viewers.toString(),
+                                    inline: true
+                                },
+                                {
+                                    name: "Esperienza pregressa",
+                                    value: formData.experience
+                                },
+                                {
+                                    name: "Contenuti proposti",
+                                    value: formData.contentType
+                                },
+                                {
+                                    name: "Altri server",
+                                    value: formData.otherServers
+                                },
+                                {
+                                    name: "Motivazione",
+                                    value: formData.motivation
                                 }
                             ],
-                            timestamp: timestamp,
+                            timestamp: new Date().toISOString(),
                             footer: {
-                                text: "FivePD - Candidatura Streamer"
+                                text: "FivePD Italia - Candidatura Streamer"
                             }
                         }
                     ]
                 };
                 
-                // Aggiungi le piattaforme selezionate
-                let platformsText = '';
-                let selectedPlatforms = [];
-                
-                platformCheckboxes.forEach(checkbox => {
-                    if (checkbox.checked) {
-                        selectedPlatforms.push(checkbox.value);
-                        const linkFieldId = `channelUrl-${checkbox.value.toLowerCase().replace(' ', '-')}`;
-                        const linkUrl = document.getElementById(linkFieldId).value;
-                        
-                        platformsText += `${checkbox.value}: ${linkUrl}\n`;
-                    }
-                });
-                
-                embed.embeds[0].fields.push({
-                    name: "Piattaforme di Streaming",
-                    value: platformsText || "Nessuna piattaforma selezionata"
-                });
-                
-                embed.embeds[0].fields.push(
-                    {
-                        name: "Frequenza Live",
-                        value: document.getElementById('frequency').value
-                    },
-                    {
-                        name: "Orari Indicativi",
-                        value: document.getElementById('streamTime').value
-                    },
-                    {
-                        name: "Media Spettatori",
-                        value: document.getElementById('viewers').value
-                    }
-                );
-                
-                // Add optional fields with content
-                const experience = document.getElementById('experience').value;
-                if (experience) {
+                // Aggiungi il campo "Altro" se presente
+                if (formData.otherInfo && formData.otherInfo !== 'Nessuna informazione aggiuntiva') {
                     embed.embeds[0].fields.push({
-                        name: "Esperienza",
-                        value: experience
+                        name: "Altre informazioni",
+                        value: formData.otherInfo
                     });
                 }
                 
-                // Add remaining required fields
-                embed.embeds[0].fields.push(
-                    {
-                        name: "Contenuti sul server",
-                        value: document.getElementById('content').value
-                    },
-                    {
-                        name: "Altri server",
-                        value: document.getElementById('otherServers').value
-                    },
-                    {
-                        name: "Accetta Regolamento",
-                        value: document.getElementById('rulesAccepted').checked ? "Sì" : "No"
-                    },
-                    {
-                        name: "Motivazione",
-                        value: document.getElementById('motivation').value
-                    }
-                );
-                
-                // Add optional "other" field if present
-                const other = document.getElementById('other').value;
-                if (other) {
-                    embed.embeds[0].fields.push({
-                        name: "Altro",
-                        value: other
-                    });
-                }
-    
-                // Send data to Discord webhook
-                fetch(webhookUrl, {
+                // Invia al webhook Discord
+                fetch(WEBHOOK_URL, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(embed)
                 })
                 .then(response => {
-                    if (response.ok) {
-                        // Success
-                        showAlert('Candidatura inviata con successo! Grazie per la tua richiesta.', 'success');
-                        form.reset();
-                        channelLinksContainer.innerHTML = ''; // Rimuovi i campi dei link
-                    } else {
-                        // Error
-                        throw new Error('Errore nell\'invio della candidatura. Riprova più tardi.');
+                    if (!response.ok) {
+                        throw new Error('Errore durante l\'invio della candidatura');
                     }
+                    
+                    // Mostra messaggio di successo
+                    showNotification('Candidatura inviata con successo! Ti contatteremo presto.', 'success');
+                    
+                    // Reset form
+                    $('#streamer-application-form')[0].reset();
+                    $('.platform-link').hide();
                 })
                 .catch(error => {
-                    console.error('Error:', error);
-                    showAlert(error.message, 'error');
+                    console.error('Errore:', error);
+                    showNotification('Si è verificato un errore durante l\'invio. Riprova più tardi.', 'error');
                 })
                 .finally(() => {
-                    // Reset button state
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Invia Candidatura';
+                    // Nascondi loader
+                    $('#loader').hide();
+                    
+                    // Riabilita il pulsante di invio
+                    $('.submit-btn').prop('disabled', false);
                 });
-            });
+            }
         });
     </script>
 </body>
