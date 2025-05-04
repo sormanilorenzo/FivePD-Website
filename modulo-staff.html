@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FivePD Italia - Portale Candidature Staff</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary-blue: #0095ff;
+            --secondary-blue: #0066cc;
+            --dark-blue: #001e3c;
+            --light-blue: #e6f3ff;
+            --accent-green: #009900;
+            --accent-red: #cc0000;
+            --accent-white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f2f5;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+            color: white;
+            padding: 20px 0;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .logo {
+            max-width: 250px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .header-content {
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        .header-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header-content p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .italian-flag {
+            background: linear-gradient(to right, #009246 33.33%, #ffffff 33.33%, #ffffff 66.66%, #ce2b37 66.66%);
+            height: 6px;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        main {
+            padding: 50px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--dark-blue);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: var(--primary-blue);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-blue);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.6s ease;
+            z-index: -1;
+        }
+        
+        .btn:hover {
+            background: var(--secondary-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn i {
+            margin-left: 8px;
+        }
+        
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+            padding: 0 15px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-blue);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--primary-blue);
+        }
+        
+        .footer-column ul li a i {
+            margin-right: 10px;
+            color: var(--primary-blue);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background: var(--primary-blue);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 600px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            transform: translateY(-50px);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            color: #aaa;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            color: #333;
+        }
+        
+        .modal.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-column {
+                margin-bottom: 30px;
+            }
+        }
+        
+        /* Animation classes */
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .slide-up {
+            animation: slideUp 0.8s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Navigation Styles */
+        nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .active {
+            border-bottom: 3px solid white;
+        }
+
+        /* Login e Form Styles */
+        .auth-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .discord-login {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .discord-btn {
+            background: #5865F2;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .discord-btn:hover {
+            background: #4752c4;
+            transform: translateY(-3px);
+        }
+
+        .form-container {
+            display: none;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--dark-blue);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-blue);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 149, 255, 0.1);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .orario-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .orario-option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .orario-option input {
+            margin-right: 8px;
+        }
+
+        .submit-btn {
+            background: var(--accent-green);
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            background: #007700;
+        }
+
+        .error-message {
+            color: var(--accent-red);
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 15px;
+            background: var(--light-blue);
+            border-radius: 8px;
+        }
+
+        .user-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .user-info h3 {
+            margin: 0;
+            color: var(--dark-blue);
+        }
+
+        .user-info p {
+            margin: 5px 0 0;
+            color: #666;
+        }
+
+        .notification {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Loader */
+        .loader {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .loader i {
+            animation: spin 1s linear infinite;
+            color: var(--primary-blue);
+            font-size: 2rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <header class="animate__animated animate__fadeIn">
+        <div class="container">
+            <div class="logo-container">
+                <img src="image/logo.png" alt="FivePD Italia Logo" class="logo">
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Chi Siamo</a></li>
+                    <li><a href="#" class="active">Candidature</a></li>
+                    <li><a href="#">Regolamento</a></li>
+                    <li><a href="#">Contatti</a></li>
+                </ul>
+            </nav>
+            <div class="header-content">
+                <h1 class="animate__animated animate__fadeInDown">Candidatura Staff</h1>
+                <p class="animate__animated animate__fadeInUp">Entra a far parte del team di FivePD Italia</p>
+            </div>
+            <div class="italian-flag"></div>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container">
+            <div class="section-title animate__animated animate__fadeIn">
+                <h2>Candidati come Staff di FivePD Italia</h2>
+            </div>
+            
+            <div class="auth-container animate__animated animate__fadeIn">
+                <div id="login-section">
+                    <h3>Per candidarti è necessario accedere con Discord</h3>
+                    <p>Utilizziamo Discord per verificare la tua identità e facilitare il processo di candidatura.</p>
+                    
+                    <div class="discord-login">
+                        <a href="#" id="discord-auth-btn" class="btn discord-btn">
+                            <i class="fab fa-discord"></i> Accedi con Discord
+                        </a>
+                    </div>
+                </div>
+                
+                <div id="form-section" class="form-container">
+                    <div id="notification" style="display: none;"></div>
+                    
+                    <div class="user-profile">
+                        <img id="user-avatar" src="/api/placeholder/60/60" alt="Avatar" class="user-avatar">
+                        <div class="user-info">
+                            <h3 id="user-username">Username</h3>
+                            <p id="user-tag">Tag#0000</p>
+                        </div>
+                    </div>
+                    
+                    <form id="staff-application-form">
+                        <div class="form-group">
+                            <label for="steam-name">Nome Steam: *</label>
+                            <input type="text" id="steam-name" class="form-control" required>
+                            <div class="error-message" id="steam-name-error">Inserisci il tuo nome Steam</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="discord-name">Nome Discord: *</label>
+                            <input type="text" id="discord-name" class="form-control" required>
+                            <div class="error-message" id="discord-name-error">Inserisci il tuo nome Discord</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="age">Età (min. 16 anni): *</label>
+                            <input type="number" id="age" class="form-control" min="16" required>
+                            <div class="error-message" id="age-error">Devi avere almeno 16 anni</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="motivation">Perché vuoi entrare nello staff di FivePD: *</label>
+                            <textarea id="motivation" class="form-control" required></textarea>
+                            <div class="error-message" id="motivation-error">Questo campo è obbligatorio</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="pc-specs">Il tuo pc è in grado di garantire una buona efficienza in game per assistere gli utenti?: *</label>
+                            <textarea id="pc-specs" class="form-control" required></textarea>
+                            <div class="error-message" id="pc-specs-error">Questo campo è obbligatorio</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Orario Disponibile: *</label>
+                            <div class="orario-options">
+                                <label class="orario-option">
+                                    <input type="checkbox" name="availability" value="mattina"> Mattina
+                                </label>
+                                <label class="orario-option">
+                                    <input type="checkbox" name="availability" value="pomeriggio"> Pomeriggio
+                                </label>
+                                <label class="orario-option">
+                                    <input type="checkbox" name="availability" value="sera"> Sera
+                                </label>
+                            </div>
+                            <div class="error-message" id="availability-error">Seleziona almeno un orario di disponibilità</div>
+                        </div>
+                        
+                        <input type="hidden" id="discord-id" value="">
+                        
+                        <button type="submit" class="btn submit-btn">
+                            Invia Candidatura <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                    
+                    <div id="loader" class="loader">
+                        <i class="fas fa-spinner"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>FivePD Italia</h3>
+                    <p style="color: #aaa; line-height: 1.6; margin-bottom: 20px;">
+                        Entra a far parte della migliore esperienza di roleplay poliziesco su GTA V in Italia.
+                    </p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Link Utili</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Chi Siamo</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Regolamento</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Contatti</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contattaci</h3>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-discord"></i> Discord</a></li>
+                        <li><a href="mailto:info@fivepditalia.it"><i class="fas fa-envelope"></i> info@fivepditalia.it</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 FivePD Italia. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Variabili per l'autenticazione OAuth2 di Discord
+            const CLIENT_ID = '1368372654259835021'; // Da sostituire con l'ID client di Discord
+            const REDIRECT_URI = window.location.origin + window.location.pathname;
+            const WEBHOOK_URL = 'YOUR_DISCORD_WEBHOOK_URL'; // Da sostituire con l'URL del webhook Discord
+            
+            // Controllo se l'utente sta tornando dall'autenticazione Discord
+            const urlParams = new URLSearchParams(window.location.hash.substring(1));
+            const accessToken = urlParams.get('access_token');
+            
+            if (accessToken) {
+                // Rimuovi i parametri dall'URL senza ricaricare la pagina
+                window.history.replaceState({}, document.title, window.location.pathname);
+                
+                // Ottieni informazioni sull'utente Discord
+                fetchDiscordUserInfo(accessToken);
+            }
+            
+            // Funzione per autenticarsi con Discord
+            $('#discord-auth-btn').on('click', function(e) {
+                e.preventDefault();
+                
+                const scope = 'identify';
+                const discordAuthUrl = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=token&scope=${scope}`;
+                
+                window.location.href = discordAuthUrl;
+            });
+            
+            // Funzione per ottenere le informazioni dell'utente Discord
+            function fetchDiscordUserInfo(token) {
+                $.ajax({
+                    url: 'https://discord.com/api/users/@me',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    success: function(userData) {
+                        // Mostra il form e nasconde la sezione di login
+                        $('#login-section').hide();
+                        $('#form-section').show();
+                        
+                        // Popola i dati dell'utente Discord
+                        $('#user-username').text(userData.username);
+                        $('#user-tag').text(`#${userData.discriminator}`);
+                        
+                        // Imposta l'avatar dell'utente se disponibile
+                        if (userData.avatar) {
+                            const avatarUrl = `https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png`;
+                            $('#user-avatar').attr('src', avatarUrl);
+                        }
+                        
+                        // Inserisci il Discord tag nel campo Discord name
+                        $('#discord-name').val(userData.username + '#' + userData.discriminator);
+                        
+                        // Salva l'ID Discord nell'input nascosto
+                        $('#discord-id').val(userData.id);
+                    },
+                    error: function() {
+                        showNotification('Errore durante il recupero delle informazioni dell\'utente Discord. Riprova.', 'error');
+                    }
+                });
+            }
+            
+            // Gestione del form di candidatura
+            $('#staff-application-form').on('submit', function(e) {
+                e.preventDefault();
+                
+                // Nasconde i messaggi di errore
+                $('.error-message').hide();
+                
+                // Validazione form
+                let isValid = true;
+                
+                // Controllo nome Steam
+                if (!$('#steam-name').val().trim()) {
+                    $('#steam-name-error').show();
+                    isValid = false;
+                }
+                
+                // Controllo nome Discord
+                if (!$('#discord-name').val().trim()) {
+                    $('#discord-name-error').show();
+                    isValid = false;
+                }
+                
+                // Controllo età
+                const age = parseInt($('#age').val());
+                if (isNaN(age) || age < 16) {
+                    $('#age-error').show();
+                    isValid = false;
+                }
+                
+                // Controllo motivazione
+                if (!$('#motivation').val().trim()) {
+                    $('#motivation-error').show();
+                    isValid = false;
+                }
+                
+                // Controllo specifiche PC
+                if (!$('#pc-specs').val().trim()) {
+                    $('#pc-specs-error').show();
+                    isValid = false;
+                }
+                
+                // Controllo disponibilità oraria
+                if (!$('input[name="availability"]:checked').length) {
+                    $('#availability-error').show();
+                    isValid = false;
+                }
+                
+                // Se il form è valido, invia i dati
+                if (isValid) {
+                    submitApplication();
+                }
+            });
+            
+            // Funzione per inviare la candidatura
+            function submitApplication() {
+                // Mostra il loader
+                $('#loader').show();
+                
+                // Raccogli gli orari selezionati
+                const availability = [];
+                $('input[name="availability"]:checked').each(function() {
+                    availability.push($(this).val());
+                });
+                
+                // Prepara i dati da inviare
+                const applicationData = {
+                    steam_name: $('#steam-name').val().trim(),
+                    discord_name: $('#discord-name').val().trim(),
+                    discord_id: $('#discord-id').val().trim(),
+                    age: $('#age').val().trim(),
+                    motivation: $('#motivation').val().trim(),
+                    pc_specs: $('#pc-specs').val().trim(),
+                    availability: availability.join(', ')
+                };
+                
+                // Prepara il payload per il webhook Discord
+                const webhookPayload = {
+                    embeds: [{
+                        title: "Nuova Candidatura Staff",
+                        color: 3447003, // Blu
+                        fields: [
+                            {
+                                name: "Nome Steam",
+                                value: applicationData.steam_name,
+                                inline: true
+                            },
+                            {
+                                name: "Nome Discord",
+                                value: applicationData.discord_name,
+                                inline: true
+                            },
+                            {
+                                name: "ID Discord",
+                                value: applicationData.discord_id,
+                                inline: true
+                            },
+                            {
+                                name: "Età",
+                                value: applicationData.age,
+                                inline: true
+                            },
+                            {
+                                name: "Disponibilità",
+                                value: applicationData.availability,
+                                inline: true
+                            },
+                            {
+                                name: "Motivazione",
+                                value: applicationData.motivation
+                            },
+                            {
+                                name: "Specifiche PC",
+                                value: applicationData.pc_specs
+                            }
+                        ],
+                        timestamp: new Date().toISOString()
+                    }]
+                };
+                
+                // Invia i dati al webhook Discord
+                $.ajax({
+                    url: WEBHOOK_URL,
+                    type: 'POST',
+                    data: JSON.stringify(webhookPayload),
+                    contentType: 'application/json',
+                    success: function() {
+                        // Nasconde il loader
+                        $('#loader').hide();
+                        
+                        // Mostra messaggio di successo
+                        showNotification('Candidatura inviata con successo! Ti contatteremo presto.', 'success');
+                        
+                        // Reset del form
+                        $('#staff-application-form')[0].reset();
+                    },
+                    error: function() {
+                        // Nasconde il loader
+                        $('#loader').hide();
+                        
+                        // Mostra messaggio di errore
+                        showNotification('Si è verificato un errore durante l\'invio della candidatura. Riprova più tardi.', 'error');
+                    }
+                });
+            }
+            
+            // Funzione per mostrare notifiche
+            function showNotification(message, type) {
+                const notification = $('#notification');
+                notification.text(message);
+                notification.removeClass('success error').addClass(type);
+                notification.show();
+                
+                // Nascondi la notifica dopo 5 secondi
+                setTimeout(function() {
+                    notification.fadeOut();
+                }, 5000);
+            }
+            
+            // Animate elements when they come into view
+            function isInViewport(element) {
+                const rect = element.getBoundingClientRect();
+                return (
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            }
+            
+            // Add animation classes when elements come into view
+            function animateOnScroll() {
+                $('.animate__animated:not(.animate__animated--triggered)').each(function() {
+                    if (isInViewport(this)) {
+                        $(this).addClass('animate__animated--triggered');
+                    }
+                });
+            }
+            
+            // Initial check and event listener
+            animateOnScroll();
+            $(window).on('scroll resize', animateOnScroll);
+            
+            // Smooth scrolling for anchor links
+            $('a[href^="#"]').on('click', function(e) {
+                if ($(this).attr('href') !== '#') {
+                    e.preventDefault();
+                    $('html, body').animate({
+                        scrollTop: $($(this).attr('href')).offset().top
+                    }, 500, 'linear');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
