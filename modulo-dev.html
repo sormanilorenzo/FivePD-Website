@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FivePD Italia - Portale Candidature Staff</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary-blue: #0095ff;
+            --secondary-blue: #0066cc;
+            --dark-blue: #001e3c;
+            --light-blue: #e6f3ff;
+            --accent-green: #009900;
+            --accent-red: #cc0000;
+            --accent-white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f2f5;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+            color: white;
+            padding: 20px 0;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .logo {
+            max-width: 250px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .header-content {
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        .header-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header-content p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .italian-flag {
+            background: linear-gradient(to right, #009246 33.33%, #ffffff 33.33%, #ffffff 66.66%, #ce2b37 66.66%);
+            height: 6px;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        main {
+            padding: 50px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--dark-blue);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: var(--primary-blue);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-blue);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.6s ease;
+            z-index: -1;
+        }
+        
+        .btn:hover {
+            background: var(--secondary-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn i {
+            margin-left: 8px;
+        }
+        
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+            padding: 0 15px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-blue);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--primary-blue);
+        }
+        
+        .footer-column ul li a i {
+            margin-right: 10px;
+            color: var(--primary-blue);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background: var(--primary-blue);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 600px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            transform: translateY(-50px);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            color: #aaa;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            color: #333;
+        }
+        
+        .modal.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-column {
+                margin-bottom: 30px;
+            }
+        }
+        
+        /* Animation classes */
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .slide-up {
+            animation: slideUp 0.8s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Navigation Styles */
+        nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .active {
+            border-bottom: 3px solid white;
+        }
+
+        /* Login e Form Styles */
+        .auth-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .discord-login {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .discord-btn {
+            background: #5865F2;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .discord-btn:hover {
+            background: #4752c4;
+            transform: translateY(-3px);
+        }
+
+        .form-container {
+            display: none;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--dark-blue);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-blue);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 149, 255, 0.1);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .orario-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .orario-option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .orario-option input {
+            margin-right: 8px;
+        }
+
+        .submit-btn {
+            background: var(--accent-green);
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            background: #007700;
+        }
+
+        .error-message {
+            color: var(--accent-red);
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 15px;
+            background: var(--light-blue);
+            border-radius: 8px;
+        }
+
+        .user-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .user-info h3 {
+            margin: 0;
+            color: var(--dark-blue);
+        }
+
+        .user-info p {
+            margin: 5px 0 0;
+            color: #666;
+        }
+
+        .notification {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Loader */
+        .loader {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .loader i {
+            animation: spin 1s linear infinite;
+            color: var(--primary-blue);
+            font-size: 2rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <header class="animate__animated animate__fadeIn">
+        <div class="container">
+            <div class="logo-container">
+                <img src="image/logo.png" alt="FivePD Italia Logo" class="logo">
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#" class="active">Candidature</a></li>
+                </ul>
+            </nav>
+            <div class="header-content">
+                <h1 class="animate__animated animate__fadeInDown">Candidatura Staff</h1>
+                <p class="animate__animated animate__fadeInUp">Entra a far parte del team di FivePD Italia</p>
+            </div>
+            <div class="italian-flag"></div>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container">
+            <div class="section-title animate__animated animate__fadeIn">
+                <h2>Candidati come Staff di FivePD Italia</h2>
+            </div>
+            
+            <div class="auth-container animate__animated animate__fadeIn">
+                <div id="login-section">
+                    <h3>Per candidarti è necessario accedere con Discord</h3>
+                    <p>Utilizziamo Discord per verificare la tua identità e facilitare il processo di candidatura.</p>
+                    
+                    <div class="discord-login">
+                        <a href="#" id="discord-auth-btn" class="btn discord-btn">
+                            <i class="fab fa-discord"></i> Accedi con Discord
+                        </a>
+                    </div>
+                </div>
+                
+                <div id="form-section" class="form-container">
+                    <div id="notification" style="display: none;"></div>
+                    
+                    <div class="user-profile">
+                        <img id="user-avatar" src="/api/placeholder/60/60" alt="Avatar" class="user-avatar">
+                        <div class="user-info">
+                            <h3 id="user-username">Username</h3>
+                            <p id="user-tag">Tag#0000</p>
+                        </div>
+                    </div>
+                    
+                    <form id="staff-application-form">
+                        <!-- INFORMAZIONI GENERALI -->
+                        <h4 style="color: var(--dark-blue); margin: 30px 0 20px 0; border-bottom: 2px solid var(--primary-blue); padding-bottom: 10px;">
+                            📌 Informazioni Generali
+                        </h4>
+                        
+                        <div class="form-group">
+                            <label for="full-name">Nome e Cognome: *</label>
+                            <input type="text" id="full-name" class="form-control" required>
+                            <div class="error-message" id="full-name-error">Inserisci nome e cognome</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="age">Età: *</label>
+                            <input type="number" id="age" class="form-control" min="16" required>
+                            <div class="error-message" id="age-error">Inserisci la tua età</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="discord-tag">Discord Tag: *</label>
+                            <input type="text" id="discord-tag" class="form-control" required>
+                            <div class="error-message" id="discord-tag-error">Inserisci il tuo Discord tag</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Fascia Oraria Disponibile: *</label>
+                            <div class="orario-options">
+                                <label class="orario-option">
+                                    <input type="checkbox" name="availability" value="mattina"> Mattina (6:00-12:00)
+                                </label>
+                                <label class="orario-option">
+                                    <input type="checkbox" name="availability" value="pomeriggio"> Pomeriggio (12:00-18:00)
+                                </label>
+                                <label class="orario-option">
+                                    <input type="checkbox" name="availability" value="sera"> Sera (18:00-24:00)
+                                </label>
+                                <label class="orario-option">
+                                    <input type="checkbox" name="availability" value="notte"> Notte (00:00-6:00)
+                                </label>
+                            </div>
+                            <div class="error-message" id="availability-error">Seleziona almeno una fascia oraria</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Hai già esperienza con lo sviluppo in FiveM?: *</label>
+                            <div style="margin: 10px 0;">
+                                <label class="orario-option">
+                                    <input type="radio" name="fivem-experience" value="si" onchange="toggleFiveMExperience(true)"> Sì
+                                </label>
+                                <label class="orario-option">
+                                    <input type="radio" name="fivem-experience" value="no" onchange="toggleFiveMExperience(false)"> No
+                                </label>
+                            </div>
+                            <textarea id="fivem-experience-desc" class="form-control" placeholder="Descrivi la tua esperienza con FiveM..." style="display: none; margin-top: 10px;"></textarea>
+                            <div class="error-message" id="fivem-experience-error">Seleziona un'opzione</div>
+                        </div>
+
+                        <!-- COMPETENZE TECNICHE -->
+                        <h4 style="color: var(--dark-blue); margin: 30px 0 20px 0; border-bottom: 2px solid var(--primary-blue); padding-bottom: 10px;">
+                            🧠 Competenze Tecniche
+                        </h4>
+                        
+                        <div class="form-group">
+                            <label>Quali linguaggi di programmazione conosci?: *</label>
+                            <div class="orario-options">
+                                <label class="orario-option">
+                                    <input type="checkbox" name="programming-languages" value="lua"> Lua
+                                </label>
+                                <label class="orario-option">
+                                    <input type="checkbox" name="programming-languages" value="javascript"> JavaScript
+                                </label>
+                                <label class="orario-option">
+                                    <input type="checkbox" name="programming-languages" value="typescript"> TypeScript
+                                </label>
+                                <label class="orario-option">
+                                    <input type="checkbox" name="programming-languages" value="sql"> SQL
+                                </label>
+                                <label class="orario-option">
+                                    <input type="checkbox" name="programming-languages" value="html-css"> HTML/CSS
+                                </label>
+                                <label class="orario-option">
+                                    <input type="checkbox" name="programming-languages" value="altro"> Altro
+                                </label>
+                            </div>
+                            <input type="text" id="other-languages" class="form-control" placeholder="Specifica altri linguaggi..." style="margin-top: 10px; display: none;">
+                            <div class="error-message" id="programming-languages-error">Seleziona almeno un linguaggio</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Hai esperienza con uno di questi framework?:</label>
+                            <div class="orario-options">
+                                <label class="orario-option">
+                                    <input type="checkbox" name="frameworks" value="esx"> ESX
+                                </label>
+                                <label class="orario-option">
+                                    <input type="checkbox" name="frameworks" value="qbcore"> QBCore
+                                </label>
+                                <label class="orario-option">
+                                    <input type="checkbox" name="frameworks" value="vrp"> vRP
+                                </label>
+                                <label class="orario-option">
+                                    <input type="checkbox" name="frameworks" value="altri"> Altri
+                                </label>
+                            </div>
+                            <input type="text" id="other-frameworks" class="form-control" placeholder="Specifica altri framework..." style="margin-top: 10px; display: none;">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Sai lavorare con database MySQL?: *</label>
+                            <div style="margin: 10px 0;">
+                                <label class="orario-option">
+                                    <input type="radio" name="mysql-knowledge" value="si" onchange="toggleMySQLLevel(true)"> Sì
+                                </label>
+                                <label class="orario-option">
+                                    <input type="radio" name="mysql-knowledge" value="no" onchange="toggleMySQLLevel(false)"> No
+                                </label>
+                            </div>
+                            <textarea id="mysql-level" class="form-control" placeholder="Descrivi il tuo livello di conoscenza MySQL..." style="display: none; margin-top: 10px;"></textarea>
+                            <div class="error-message" id="mysql-knowledge-error">Seleziona un'opzione</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Sai utilizzare Git/GitHub?: *</label>
+                            <div style="margin: 10px 0;">
+                                <label class="orario-option">
+                                    <input type="radio" name="git-knowledge" value="si" onchange="toggleGitLevel(true)"> Sì
+                                </label>
+                                <label class="orario-option">
+                                    <input type="radio" name="git-knowledge" value="no" onchange="toggleGitLevel(false)"> No
+                                </label>
+                            </div>
+                            <textarea id="git-level" class="form-control" placeholder="Descrivi la tua esperienza con Git/GitHub..." style="display: none; margin-top: 10px;"></textarea>
+                            <div class="error-message" id="git-knowledge-error">Seleziona un'opzione</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="custom-scripts">Hai mai sviluppato o modificato scripts personalizzati?: *</label>
+                            <textarea id="custom-scripts" class="form-control" required placeholder="Descrivi brevemente la tua esperienza..."></textarea>
+                            <div class="error-message" id="custom-scripts-error">Questo campo è obbligatorio</div>
+                        </div>
+
+                        <!-- ESPERIENZA E PORTFOLIO -->
+                        <h4 style="color: var(--dark-blue); margin: 30px 0 20px 0; border-bottom: 2px solid var(--primary-blue); padding-bottom: 10px;">
+                            🛠️ Esperienza e Portfolio
+                        </h4>
+                        
+                        <div class="form-group">
+                            <label>Hai lavorato in altri server FiveM?: *</label>
+                            <div style="margin: 10px 0;">
+                                <label class="orario-option">
+                                    <input type="radio" name="other-servers" value="si" onchange="toggleOtherServers(true)"> Sì
+                                </label>
+                                <label class="orario-option">
+                                    <input type="radio" name="other-servers" value="no" onchange="toggleOtherServers(false)"> No
+                                </label>
+                            </div>
+                            <textarea id="other-servers-desc" class="form-control" placeholder="Elenca i server, ruoli e descrizione dell'esperienza..." style="display: none; margin-top: 10px;"></textarea>
+                            <div class="error-message" id="other-servers-error">Seleziona un'opzione</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="portfolio">Hai un portfolio o repo GitHub con i tuoi lavori?:</label>
+                            <input type="url" id="portfolio" class="form-control" placeholder="https://github.com/tuousername o link portfolio">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="proud-project">Descrivi un progetto FiveM di cui sei orgoglioso: *</label>
+                            <textarea id="proud-project" class="form-control" required placeholder="Cosa hai realizzato e come hai risolto eventuali problemi?"></textarea>
+                            <div class="error-message" id="proud-project-error">Questo campo è obbligatorio</div>
+                        </div>
+
+                        <!-- SOFT SKILL E COLLABORAZIONE -->
+                        <h4 style="color: var(--dark-blue); margin: 30px 0 20px 0; border-bottom: 2px solid var(--primary-blue); padding-bottom: 10px;">
+                            💬 Soft Skill e Collaborazione
+                        </h4>
+                        
+                        <div class="form-group">
+                            <label for="teamwork">Sai lavorare in team con altri developer o staff?: *</label>
+                            <textarea id="teamwork" class="form-control" required placeholder="Breve descrizione del tuo approccio al lavoro di squadra..."></textarea>
+                            <div class="error-message" id="teamwork-error">Questo campo è obbligatorio</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="pressure-management">Come gestisci la pressione o una scadenza urgente?: *</label>
+                            <textarea id="pressure-management" class="form-control" required></textarea>
+                            <div class="error-message" id="pressure-management-error">Questo campo è obbligatorio</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bug-handling">Come ti comporti se scopri un bug critico causato da un tuo script in produzione?: *</label>
+                            <textarea id="bug-handling" class="form-control" required></textarea>
+                            <div class="error-message" id="bug-handling-error">Questo campo è obbligatorio</div>
+                        </div>
+
+                        <!-- CONOSCENZE OPZIONALI -->
+                        <h4 style="color: var(--dark-blue); margin: 30px 0 20px 0; border-bottom: 2px solid var(--primary-blue); padding-bottom: 10px;">
+                            🔐 Conoscenze Opzionali (Bonus)
+                        </h4>
+                        
+                        <div class="form-group">
+                            <label for="security-experience">Hai esperienza con la sicurezza dei server (es. anti-cheat, protezione dati)?:</label>
+                            <textarea id="security-experience" class="form-control" placeholder="Descrivi la tua esperienza (opzionale)..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="reverse-engineering">Hai mai fatto reverse engineering o debug di script di terze parti?:</label>
+                            <textarea id="reverse-engineering" class="form-control" placeholder="Descrivi la tua esperienza (opzionale)..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="optimization">Sei in grado di ottimizzare codice per migliorare le performance del server?:</label>
+                            <textarea id="optimization" class="form-control" placeholder="Descrivi la tua esperienza (opzionale)..."></textarea>
+                        </div>
+
+                        <!-- DOMANDE FINALI -->
+                        <h4 style="color: var(--dark-blue); margin: 30px 0 20px 0; border-bottom: 2px solid var(--primary-blue); padding-bottom: 10px;">
+                            ✅ Domande Finali
+                        </h4>
+                        
+                        <div class="form-group">
+                            <label for="motivation">Perché vuoi entrare nel team di sviluppo di questo server?: *</label>
+                            <textarea id="motivation" class="form-control" required></textarea>
+                            <div class="error-message" id="motivation-error">Questo campo è obbligatorio</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="additional-notes">Hai qualcosa da aggiungere o segnalare? (Note, preferenze, richieste):</label>
+                            <textarea id="additional-notes" class="form-control" placeholder="Note aggiuntive (opzionale)..."></textarea>
+                        </div>
+                        
+                        <input type="hidden" id="discord-id" value="">
+                        
+                        <button type="submit" class="btn submit-btn">
+                            Invia Candidatura <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                    
+                    <div id="loader" class="loader">
+                        <i class="fas fa-spinner"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>FivePD Italia</h3>
+                    <p style="color: #aaa; line-height: 1.6; margin-bottom: 20px;">
+                        Entra a far parte della migliore esperienza di roleplay poliziesco su GTA V in Italia.
+                    </p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Link Utili</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Chi Siamo</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Regolamento</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Contatti</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contattaci</h3>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-discord"></i> Discord</a></li>
+                        <li><a href="mailto:info@fivepditalia.it"><i class="fas fa-envelope"></i> info@fivepditalia.it</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 FivePD Italia. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Variabili per l'autenticazione OAuth2 di Discord
+            const CLIENT_ID = '1368372654259835021'; // Da sostituire con l'ID client di Discord
+            const REDIRECT_URI = window.location.origin + window.location.pathname;
+            const WEBHOOK_URL = 'YOUR_DISCORD_WEBHOOK_URL'; // Da sostituire con l'URL del webhook Discord
+            
+            // Controllo se l'utente sta tornando dall'autenticazione Discord
+            const urlParams = new URLSearchParams(window.location.hash.substring(1));
+            const accessToken = urlParams.get('access_token');
+            
+            if (accessToken) {
+                // Rimuovi i parametri dall'URL senza ricaricare la pagina
+                window.history.replaceState({}, document.title, window.location.pathname);
+                
+                // Ottieni informazioni sull'utente Discord
+                fetchDiscordUserInfo(accessToken);
+            }
+            
+            // Funzione per autenticarsi con Discord
+            $('#discord-auth-btn').on('click', function(e) {
+                e.preventDefault();
+                
+                const scope = 'identify';
+                const discordAuthUrl = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=token&scope=${scope}`;
+                
+                window.location.href = discordAuthUrl;
+            });
+            
+            // Funzione per ottenere le informazioni dell'utente Discord
+            function fetchDiscordUserInfo(token) {
+                $.ajax({
+                    url: 'https://discord.com/api/users/@me',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    success: function(userData) {
+                        // Mostra il form e nasconde la sezione di login
+                        $('#login-section').hide();
+                        $('#form-section').show();
+                        
+                        // Popola i dati dell'utente Discord
+                        $('#user-username').text(userData.username);
+                        $('#user-tag').text(`#${userData.discriminator}`);
+                        
+                        // Imposta l'avatar dell'utente se disponibile
+                        if (userData.avatar) {
+                            const avatarUrl = `https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png`;
+                            $('#user-avatar').attr('src', avatarUrl);
+                        }
+                        
+                        // Inserisci il Discord tag nel campo Discord name
+                        $('#discord-tag').val(userData.username + '#' + userData.discriminator);
+                        
+                        // Salva l'ID Discord nell'input nascosto
+                        $('#discord-id').val(userData.id);
+                    },
+                    error: function() {
+                        showNotification('Errore durante il recupero delle informazioni dell\'utente Discord. Riprova.', 'error');
+                    }
+                });
+            }
+            
+            // Funzioni per gestire i campi condizionali
+            window.toggleFiveMExperience = function(show) {
+                const desc = document.getElementById('fivem-experience-desc');
+                desc.style.display = show ? 'block' : 'none';
+                if (!show) desc.value = '';
+            }
+
+            window.toggleMySQLLevel = function(show) {
+                const level = document.getElementById('mysql-level');
+                level.style.display = show ? 'block' : 'none';
+                if (!show) level.value = '';
+            }
+
+            window.toggleGitLevel = function(show) {
+                const level = document.getElementById('git-level');
+                level.style.display = show ? 'block' : 'none';
+                if (!show) level.value = '';
+            }
+
+            window.toggleOtherServers = function(show) {
+                const desc = document.getElementById('other-servers-desc');
+                desc.style.display = show ? 'block' : 'none';
+                if (!show) desc.value = '';
+            }
+
+            // Gestione checkbox "Altro" per linguaggi
+            $(document).on('change', 'input[name="programming-languages"][value="altro"]', function() {
+                const otherInput = $('#other-languages');
+                if (this.checked) {
+                    otherInput.show();
+                } else {
+                    otherInput.hide().val('');
+                }
+            });
+
+            // Gestione checkbox "Altri" per framework
+            $(document).on('change', 'input[name="frameworks"][value="altri"]', function() {
+                const otherInput = $('#other-frameworks');
+                if (this.checked) {
+                    otherInput.show();
+                } else {
+                    otherInput.hide().val('');
+                }
+            });
+            
+            // Gestione del form di candidatura
+            $('#staff-application-form').on('submit', function(e) {
+                e.preventDefault();
+                
+                // Nasconde i messaggi di errore
+                $('.error-message').hide();
+                
+                // Validazione form
+                let isValid = true;
+                
+                // Controllo nome e cognome
+                if (!$('#full-name').val().trim()) {
+                    $('#full-name-error').show();
+                    isValid = false;
+                }
+                
+                // Controllo età
+                const age = parseInt($('#age').val());
+                if (isNaN(age) || age < 16) {
+                    $('#age-error').show();
+                    isValid = false;
+                }
+                
+                // Controllo Discord tag
+                if (!$('#discord-tag').val().trim()) {
+                    $('#discord-tag-error').show();
+                    isValid = false;
+                }
+                
+                // Controllo disponibilità oraria
+                if (!$('input[name="availability"]:checked').length) {
+                    $('#availability-error').show();
+                    isValid = false;
+                }
+                
+                // Controllo esperienza FiveM
+                if (!$('input[name="fivem-experience"]:checked').length) {
+                    $('#fivem-experience-error').show();
+                    isValid = false;
+                }
+                
+                // Controllo linguaggi di programmazione
+                if (!$('input[name="programming-languages"]:checked').length) {
+                    $('#programming-languages-error').show();
+                    isValid = false;
+                }
+                
+                // Controllo MySQL
+                if (!$('input[name="mysql-knowledge"]:checked').length) {
+                    $('#mysql-knowledge-error').show();
+                    isValid = false;
+                }
+                
+                // Controllo Git
+                if (!$('input[name="git-knowledge"]:checked').length) {
+                    $('#git-knowledge-error').show();
+                    isValid = false;
+                }
+                
+                // Controllo scripts personalizzati
+                if (!$('#custom-scripts').val().trim()) {
+                    $('#custom-scripts-error').show();
+                    isValid = false;
+                }
+                
+                // Controllo altri server
+                if (!$('input[name="other-servers"]:checked').length) {
+                    $('#other-servers-error').show();
+                    isValid = false;
+                }
+                
+                // Controllo progetto orgoglioso
+                if (!$('#proud-project').val().trim()) {
+                    $('#proud-project-error').show();
+                    isValid = false;
+                }
+                
+                // Controllo teamwork
+                if (!$('#teamwork').val().trim()) {
+                    $('#teamwork-error').show();
+                    isValid = false;
+                }
+                
+                // Controllo gestione pressione
+                if (!$('#pressure-management').val().trim()) {
+                    $('#pressure-management-error').show();
+                    isValid = false;
+                }
+                
+                // Controllo gestione bug
+                if (!$('#bug-handling').val().trim()) {
+                    $('#bug-handling-error').show();
+                    isValid = false;
+                }
+                
+                // Controllo motivazione
+                if (!$('#motivation').val().trim()) {
+                    $('#motivation-error').show();
+                    isValid = false;
+                }
+                
+                // Se il form è valido, invia i dati
+                if (isValid) {
+                    submitApplication();
+                }
+            });
+            
+            // Funzione per inviare la candidatura
+            function submitApplication() {
+                // Mostra il loader
+                $('#loader').show();
+                
+                // Raccogli tutti i nuovi dati del form
+                const programmingLanguages = [];
+                $('input[name="programming-languages"]:checked').each(function() {
+                    programmingLanguages.push($(this).val());
+                });
+                if ($('input[name="programming-languages"][value="altro"]').is(':checked') && $('#other-languages').val()) {
+                    programmingLanguages.push($('#other-languages').val());
+                }
+                
+                const frameworks = [];
+                $('input[name="frameworks"]:checked').each(function() {
+                    frameworks.push($(this).val());
+                });
+                if ($('input[name="frameworks"][value="altri"]').is(':checked') && $('#other-frameworks').val()) {
+                    frameworks.push($('#other-frameworks').val());
+                }
+                
+                const availability = [];
+                $('input[name="availability"]:checked').each(function() {
+                    availability.push($(this).val());
+                });
+                
+                // Prepara il payload principale per il webhook Discord
+                const webhookPayload = {
+                    embeds: [{
+                        title: "🔧 Nuova Candidatura Developer",
+                        color: 3447003, // Blu
+                        fields: [
+                            {
+                                name: "👤 Nome e Cognome",
+                                value: $('#full-name').val() || "Non specificato",
+                                inline: true
+                            },
+                            {
+                                name: "🎂 Età",
+                                value: $('#age').val() || "Non specificata",
+                                inline: true
+                            },
+                            {
+                                name: "💬 Discord",
+                                value: $('#discord-tag').val() || "Non specificato",
+                                inline: true
+                            },
+                            {
+                                name: "⏰ Disponibilità",
+                                value: availability.join(', ') || "Non specificata",
+                                inline: false
+                            },
+                            {
+                                name: "🎮 Esperienza FiveM",
+                                value: $('input[name="fivem-experience"]:checked').val() === 'si' ? 
+                                    ("Sì" + ($('#fivem-experience-desc').val() ? " - " + $('#fivem-experience-desc').val() : "")) : "No",
+                                inline: false
+                            },
+                            {
+                                name: "💻 Linguaggi di Programmazione",
+                                value: programmingLanguages.join(', ') || "Nessuno specificato",
+                                inline: false
+                            },
+                            {
+                                name: "🔧 Framework",
+                                value: frameworks.join(', ') || "Nessuno specificato",
+                                inline: false
+                            },
+                            {
+                                name: "🗄️ MySQL",
+                                value: $('input[name="mysql-knowledge"]:checked').val() === 'si' ? 
+                                    ("Sì" + ($('#mysql-level').val() ? " - " + $('#mysql-level').val().substring(0, 200) : "")) : "No",
+                                inline: true
+                            },
+                            {
+                                name: "📚 Git/GitHub",
+                                value: $('input[name="git-knowledge"]:checked').val() === 'si' ? 
+                                    ("Sì" + ($('#git-level').val() ? " - " + $('#git-level').val().substring(0, 200) : "")) : "No",
+                                inline: true
+                            },
+                            {
+                                name: "⚙️ Scripts Personalizzati",
+                                value: $('#custom-scripts').val().substring(0, 1000) || "Non specificato",
+                                inline: false
+                            }
+                        ],
+                        footer: {
+                            text: "Candidatura Developer - Parte 1/3"
+                        },
+                        timestamp: new Date().toISOString()
+                    }]
+                };
+                
+                // Secondo embed con esperienza e portfolio
+                const secondEmbed = {
+                    title: "🛠️ Esperienza e Portfolio",
+                    color: 10181046, // Viola
+                    fields: [
+                        {
+                            name: "🌐 Altri Server FiveM",
+                            value: $('input[name="other-servers"]:checked').val() === 'si' ? 
+                                ("Sì" + ($('#other-servers-desc').val() ? " - " + $('#other-servers-desc').val().substring(0, 800) : "")) : "No",
+                            inline: false
+                        },
+                        {
+                            name: "📂 Portfolio/GitHub",
+                            value: $('#portfolio').val() || "Non fornito",
+                            inline: false
+                        },
+                        {
+                            name: "🏆 Progetto di cui sei orgoglioso",
+                            value: $('#proud-project').val().substring(0, 1000) || "Non specificato",
+                            inline: false
+                        }
+                    ],
+                    footer: {
+                        text: "Candidatura Developer - Parte 2/3"
+                    },
+                    timestamp: new Date().toISOString()
+                };
+                
+                // Terzo embed con soft skills e domande finali
+                const thirdEmbed = {
+                    title: "💬 Soft Skills e Motivazioni",
+                    color: 15844367, // Oro
+                    fields: [
+                        {
+                            name: "👥 Lavoro di Team",
+                            value: $('#teamwork').val().substring(0, 800) || "Non specificato",
+                            inline: false
+                        },
+                        {
+                            name: "⚡ Gestione Pressione",
+                            value: $('#pressure-management').val().substring(0, 800) || "Non specificato",
+                            inline: false
+                        },
+                        {
+                            name: "🐛 Gestione Bug Critici",
+                            value: $('#bug-handling').val().substring(0, 800) || "Non specificato",
+                            inline: false
+                        },
+                        {
+                            name: "💡 Motivazione",
+                            value: $('#motivation').val().substring(0, 1000) || "Non specificata",
+                            inline: false
+                        }
+                    ],
+                    footer: {
+                        text: "Candidatura Developer - Parte 3/3"
+                    },
+                    timestamp: new Date().toISOString()
+                };
+                
+                // Aggiungi gli embed al payload
+                webhookPayload.embeds.push(secondEmbed, thirdEmbed);
+                
+                // Se ci sono campi opzionali compilati, aggiungi un quarto embed
+                const optionalFields = [];
+                if ($('#security-experience').val().trim()) {
+                    optionalFields.push({ 
+                        name: "🔐 Sicurezza Server", 
+                        value: $('#security-experience').val().substring(0, 500),
+                        inline: false
+                    });
+                }
+                if ($('#reverse-engineering').val().trim()) {
+                    optionalFields.push({ 
+                        name: "🔍 Reverse Engineering", 
+                        value: $('#reverse-engineering').val().substring(0, 500),
+                        inline: false
+                    });
+                }
+                if ($('#optimization').val().trim()) {
+                    optionalFields.push({ 
+                        name: "⚡ Ottimizzazione Performance", 
+                        value: $('#optimization').val().substring(0, 500),
+                        inline: false
+                    });
+                }
+                if ($('#additional-notes').val().trim()) {
+                    optionalFields.push({ 
+                        name: "📝 Note Aggiuntive", 
+                        value: $('#additional-notes').val().substring(0, 500),
+                        inline: false
+                    });
+                }
+                
+                if (optionalFields.length > 0) {
+                    webhookPayload.embeds.push({
+                        title: "🔐 Competenze Bonus e Note",
+                        color: 5763719, // Verde scuro
+                        fields: optionalFields,
+                        footer: {
+                            text: "Informazioni Aggiuntive"
+                        },
+                        timestamp: new Date().toISOString()
+                    });
+                }
+                
+                // Invio al webhook Discord
+                $.ajax({
+                    url: WEBHOOK_URL,
+                    type: 'POST',
+                    data: JSON.stringify(webhookPayload),
+                    contentType: 'application/json',
+                    success: function() {
+                        // Nasconde il loader
+                        $('#loader').hide();
+                        
+                        // Mostra messaggio di successo
+                        showNotification('Candidatura inviata con successo! Ti contatteremo presto.', 'success');
+                        
+                        // Reset del form
+                        $('#staff-application-form')[0].reset();
+                        
+                        // Nasconde anche i campi condizionali
+                        $('#fivem-experience-desc, #mysql-level, #git-level, #other-servers-desc, #other-languages, #other-frameworks').hide();
+                    },
+                    error: function(xhr, status, error) {
+                        // Nasconde il loader
+                        $('#loader').hide();
+                        
+                        // Mostra messaggio di errore dettagliato
+                        console.error('Errore webhook:', error);
+                        showNotification('Si è verificato un errore durante l\'invio della candidatura. Riprova più tardi.', 'error');
+                    }
+                });
+            }
+            
+            // Funzione per mostrare notifiche
+            function showNotification(message, type) {
+                const notification = $('#notification');
+                notification.text(message);
+                notification.removeClass('success error').addClass(type);
+                notification.show();
+                
+                // Scorri verso l'alto per mostrare la notifica
+                $('html, body').animate({
+                    scrollTop: notification.offset().top - 100
+                }, 500);
+                
+                // Nascondi la notifica dopo 8 secondi
+                setTimeout(function() {
+                    notification.fadeOut();
+                }, 8000);
+            }
+            
+            // Animate elements when they come into view
+            function isInViewport(element) {
+                const rect = element.getBoundingClientRect();
+                return (
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            }
+            
+            // Add animation classes when elements come into view
+            function animateOnScroll() {
+                $('.animate__animated:not(.animate__animated--triggered)').each(function() {
+                    if (isInViewport(this)) {
+                        $(this).addClass('animate__animated--triggered');
+                    }
+                });
+            }
+            
+            // Initial check and event listener
+            animateOnScroll();
+            $(window).on('scroll resize', animateOnScroll);
+            
+            // Smooth scrolling for anchor links
+            $('a[href^="#"]').on('click', function(e) {
+                if ($(this).attr('href') !== '#') {
+                    e.preventDefault();
+                    $('html, body').animate({
+                        scrollTop: $($(this).attr('href')).offset().top
+                    }, 500, 'linear');
+                }
+            });
+            
+            // Prevenzione dell'invio multiplo del form
+            let isSubmitting = false;
+            $('#staff-application-form').on('submit', function(e) {
+                if (isSubmitting) {
+                    e.preventDefault();
+                    return false;
+                }
+                isSubmitting = true;
+                
+                // Reset del flag dopo 5 secondi per permettere un nuovo tentativo in caso di errore
+                setTimeout(function() {
+                    isSubmitting = false;
+                }, 5000);
+            });
+            
+            // Auto-resize delle textarea
+            $('textarea').on('input', function() {
+                this.style.height = 'auto';
+                this.style.height = (this.scrollHeight) + 'px';
+            });
+            
+            // Contatore caratteri per campi lunghi
+            const fieldsWithCounter = ['#motivation', '#proud-project', '#custom-scripts'];
+            fieldsWithCounter.forEach(function(fieldId) {
+                $(fieldId).after('<div class="char-counter" style="text-align: right; font-size: 0.8em; color: #666; margin-top: 5px;"></div>');
+                
+                $(fieldId).on('input', function() {
+                    const length = $(this).val().length;
+                    const maxLength = fieldId === '#motivation' ? 1000 : 800;
+                    const counter = $(this).next('.char-counter');
+                    
+                    counter.text(`${length}/${maxLength} caratteri`);
+                    
+                    if (length > maxLength * 0.9) {
+                        counter.css('color', '#cc0000');
+                    } else if (length > maxLength * 0.7) {
+                        counter.css('color', '#ff9900');
+                    } else {
+                        counter.css('color', '#666');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
