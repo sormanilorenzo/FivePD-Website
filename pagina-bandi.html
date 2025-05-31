@@ -473,6 +473,12 @@
             <div class="logo-container">
                 <img src="image/logo.png" alt="FivePD Italia Logo" class="logo">
             </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#" class="active">Candidature</a></li>
+                </ul>
+            </nav>
             <div class="header-content">
                 <h1 class="animate__animated animate__fadeInDown">FivePD Italia</h1>
                 <p class="animate__animated animate__fadeInUp">Server italiano di roleplay poliziesco su GTA V</p>
@@ -511,19 +517,6 @@
                         <h3><i class="fas fa-video"></i> Streamer</h3>
                         <p>Sei uno streamer e vuoi trasmettere le tue avventure nel nostro server? Compila il modulo e diventa un content creator ufficiale.</p>
                         <a href="modulo-streamer.html" class="btn">Compila Modulo <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-
-                <!-- Modulo Content Creator -->
-                <div class="module-card animate__animated animate__fadeInUp" style="animation-delay: 0.4s">
-                    <div class="module-image">
-                        <img src="/api/placeholder/600/400" alt="Content Creator FivePD">
-                        <div class="module-overlay"></div>
-                    </div>
-                    <div class="module-content">
-                        <h3><i class="fas fa-photo-video"></i> Content Creator</h3>
-                        <p>Crea contenuti per YouTube, TikTok o altre piattaforme? Unisciti a noi come content creator e promuovi il nostro server.</p>
-                        <a href="modulo-creator.html" class="btn">Compila Modulo <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                                 
@@ -689,11 +682,10 @@
             });
         });
 
-        // Configurazione dello stato delle candidature open e closed
+        // Configurazione dello stato delle candidature
         const applicationStatus = {
             'staff': 'open',     // Cambia in 'open' per aprire le candidature
             'streamer': 'open',    // Cambia in 'closed' per chiudere le candidature
-            'creator': 'open',     // Cambia in 'closed' per chiudere le candidature
             'dev': 'open',       // Cambia in 'open' per aprire le candidature
             'grafico': 'open'      // Cambia in 'closed' per chiudere le candidature
         };
